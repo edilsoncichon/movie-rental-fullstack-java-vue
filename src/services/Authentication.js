@@ -1,6 +1,6 @@
 'use strict'
 
-export default function handleLogin () {
+export function handleLogin () {
   let vm = this
   if (this.username === 'ecichon' && this.password === '123456') {
     vm.messageValidate = ''
@@ -8,4 +8,8 @@ export default function handleLogin () {
   } else {
     vm.messageValidate = 'Login inválido!'
   }
+}
+
+export function handleLogout () {
+  console.error('//TODO Implements logout')
 }

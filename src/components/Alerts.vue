@@ -23,4 +23,7 @@
   font-size: 30px;
   border: 1px solid #2c3e50;
 }
+.alerts {
+  text-align: center;
+}
 </style>

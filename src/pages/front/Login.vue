@@ -14,15 +14,15 @@
 
 <script>
 import Alert from '@/components/Alerts'
-import handleLogin from '@/services/HandleLogin'
+import { handleLogin } from '@/services/Authentication'
 export default {
   name: 'Login',
   methods: {
-    handleLogin: handleLogin
+    handleLogin
   },
   data () {
     return {
-      title: 'Login',
+      title: 'Entrar',
       username: '',
       password: '',
       messageValidate: ''

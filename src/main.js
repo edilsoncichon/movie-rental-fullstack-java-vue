@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './layouts/App'
 import router from './router'
+import featherIcons from 'feather-icons'
 
 Vue.config.productionTip = false
 
@@ -11,5 +12,9 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: {
+    App
+  }
 })
+
+featherIcons.replace()

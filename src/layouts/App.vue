@@ -1,27 +1,32 @@
 <template>
   <div id="app">
     <nav-bar/>
-    <img src="../assets/logo.png">
-    <router-view/>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <side-bar isDashboard="true"/>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <router-view/>
+        </main>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import SideBar from '@/components/SideBarAdmin'
 import NavBar from '@/components/NavBar'
-
 export default {
-  components: { NavBar },
-  name: 'app'
+  name: 'App',
+  components: {
+    SideBar,
+    NavBar
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 0;
-}
+
 </style>

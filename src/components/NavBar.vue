@@ -1,44 +1,24 @@
 <template>
-  <div class="nav">
-    <nav class="nav-bar-fixed-top clearfix">
-      <a class="company-name" href="#">{{ companyName }}</a>
-      <router-link :to="{name: 'front.home'}">Home</router-link>
-      <router-link :to="{name: 'front.noticies'}">Noticies</router-link>
-      <router-link :to="{name: 'front.login'}">Login</router-link>
+  <div>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">{{ companyName }}</a>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Buscar" aria-label="Buscar">
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <router-link class="nav-link" :to="{name: 'login'}">Entrar</router-link>
+        </li>
+      </ul>
     </nav>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'navbar',
+  name: 'NavBarAdmin',
   data () {
     return {
-      companyName: 'YoutubeFlix'
+      companyName: 'iutube'
     }
   }
 }
 </script>
-
-<style scoped>
-  .nav-bar-fixed-top {
-    width: 100%;
-    background-color: #41b883;
-  }
-  .nav-bar-fixed-top a {
-    text-decoration: none;
-    float: left;
-    width: 20%;
-  }
-  .nav-bar-fixed-top .company-name {
-    width: 40%;
-    font-weight: 700;
-  }
-  .clearfix {
-    overflow: auto;
-    zoom: 1;
-  }
-  .dd {
-    border: 1px solid red;
-  }
-</style>
