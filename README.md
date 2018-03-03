@@ -1,4 +1,4 @@
-# vuejs_webpack
+# Movie Rental with VueJS 2
 
 > A Vue.js project
 
