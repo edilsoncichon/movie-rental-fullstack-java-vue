@@ -18,3 +18,12 @@
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    name: 'Reports',
+    created () {
+      this.$bus.$emit('activateMenuItem', { menu: 'reports' })
+    }
+  }
+</script>

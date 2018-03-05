@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="component-login">
     <h1>{{ title }}</h1>
     <form action="login" method="post" v-on:submit.prevent="handleLogin">
       <label for="username">Username</label>
@@ -20,6 +20,7 @@ export default {
   methods: {
     handleLogin
   },
+  components: { Alert },
   data () {
     return {
       title: 'Entrar',
@@ -28,7 +29,9 @@ export default {
       messageValidate: ''
     }
   },
-  components: { Alert }
+  created () {
+    this.$bus.$emit('activateMenuItem', { menu: 'home' })
+  }
 }
 </script>
 

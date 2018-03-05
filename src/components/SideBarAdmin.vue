@@ -26,6 +26,12 @@
         </router-link>
       </li>
       <li class="nav-item">
+        <router-link :to="{name: ''}" v-bind:class="{active: isPlans}" class="nav-link">
+          <span data-feather="dollar-sign"></span>
+          Plans
+        </router-link>
+      </li>
+      <li class="nav-item">
         <router-link :to="{name: 'back.reports'}" v-bind:class="{active: isReports}" class="nav-link">
           <span data-feather="bar-chart-2"></span>
           Relatórios
@@ -50,17 +56,59 @@
 </template>
 
 <script>
-import SideBar from '@/components/SideBar'
-export default {
-  props: [
-    'isDashboard',
-    'isLocations',
-    'isTitles',
-    'isCustomers',
-    'isReports'
-  ],
-  components: {
-    SideBar
+  import SideBar from '@/components/SideBar'
+  export default {
+    name: 'SideBarAdmin',
+    components: {
+      SideBar
+    },
+    data () {
+      return {
+        isDashboard: false,
+        isLocations: false,
+        isTitles: false,
+        isCustomers: false,
+        isReports: false,
+        isPlans: false
+      }
+    },
+    created () {
+      this.$bus.$on('activateMenuItem', ($event) => {
+        this.activateMenuItem($event.menu)
+      })
+    },
+    methods: {
+      disableMenus () {
+        this.isDashboard = false
+        this.isLocations = false
+        this.isTitles = false
+        this.isCustomers = false
+        this.isPlans = false
+        this.isReports = false
+      },
+      activateMenuItem (menu) {
+        this.disableMenus()
+        switch (menu) {
+          case 'dashboard':
+            this.isDashboard = true
+            break
+          case 'locations':
+            this.isLocations = true
+            break
+          case 'titles':
+            this.isTitles = true
+            break
+          case 'customers':
+            this.isCustomers = true
+            break
+          case 'plans':
+            this.isPlans = true
+            break
+          case 'reports':
+            this.isReports = true
+            break
+        }
+      }
+    }
   }
-}
 </script>

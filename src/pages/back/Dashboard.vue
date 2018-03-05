@@ -56,7 +56,10 @@
 
 <script>
     export default {
-      name: 'Dashboard'
+      name: 'Dashboard',
+      created () {
+        this.$bus.$emit('activateMenuItem', { menu: 'dashboard' })
+      }
     }
 </script>
 

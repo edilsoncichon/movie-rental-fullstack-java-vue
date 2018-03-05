@@ -7,14 +7,22 @@ import featherIcons from 'feather-icons'
 
 Vue.config.productionTip = false
 
+/* EventBus Global Register */
+const EventBus = new Vue()
+Object.defineProperties(Vue.prototype, {
+  $bus: {
+    get: function () {
+      return EventBus
+    }
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: {
-    App
-  }
+  components: { App }
 })
 
 featherIcons.replace()

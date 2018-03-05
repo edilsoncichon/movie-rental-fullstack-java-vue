@@ -63,3 +63,12 @@
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    name: 'Title',
+    created () {
+      this.$bus.$emit('activateMenuItem', { menu: 'titles' })
+    }
+  }
+</script>

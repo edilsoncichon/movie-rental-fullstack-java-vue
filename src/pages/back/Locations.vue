@@ -51,3 +51,12 @@
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    name: 'Locations',
+    created () {
+      this.$bus.$emit('activateMenuItem', { menu: 'locations' })
+    }
+  }
+</script>
