@@ -7,12 +7,16 @@ import featherIcons from 'feather-icons'
 
 Vue.config.productionTip = false
 
-/* EventBus Global Register */
 const EventBus = new Vue()
 Object.defineProperties(Vue.prototype, {
   $bus: {
     get: function () {
       return EventBus
+    }
+  },
+  $featherIcons: {
+    get: function () {
+      return featherIcons
     }
   }
 })

@@ -21,6 +21,10 @@ export default new Router({
       component: Login
     },
     {
+      path: '/',
+      component: Home
+    },
+    {
       path: '/home',
       name: 'front.home',
       component: Home

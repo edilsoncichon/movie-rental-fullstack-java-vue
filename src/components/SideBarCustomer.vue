@@ -1,5 +1,5 @@
 <template>
-  <side-bar>
+  <side-bar class="sidebar-customer">
     <div class="container">
       <form>
         <div class="form-group">

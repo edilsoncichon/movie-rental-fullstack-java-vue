@@ -1,5 +1,5 @@
 <template>
-  <side-bar>
+  <side-bar class="sidebar-admin">
     <ul class="nav flex-column">
       <li class="nav-item">
         <router-link :to="{name: 'back.dashboard'}" v-bind:class="{active: isDashboard}" class="nav-link">
@@ -76,6 +76,9 @@
       this.$bus.$on('activateMenuItem', ($event) => {
         this.activateMenuItem($event.menu)
       })
+    },
+    mounted () {
+      this.$featherIcons.replace()
     },
     methods: {
       disableMenus () {
