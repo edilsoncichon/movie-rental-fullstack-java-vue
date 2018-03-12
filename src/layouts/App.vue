@@ -43,6 +43,9 @@ export default {
         this.isCustomer = false
       }
     })
+  },
+  updated () {
+    this.$featherIcons.replace()
   }
 }
 </script>
