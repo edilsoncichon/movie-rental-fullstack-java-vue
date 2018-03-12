@@ -1,4 +1,5 @@
 //TODO Refatorar esse CSS para SCSS
+//TODO Ver exemplos de organização de SCSS
 body {
   font-size: .875rem;
 }
@@ -96,4 +97,8 @@ body {
 .box-shadow:hover { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .3); }
 .card:hover {
   height: 300px;
+}
+
+.h2 > .operation {
+  font-size: 1.5rem;
 }

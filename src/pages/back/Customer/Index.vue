@@ -4,6 +4,9 @@
       <h1 class="h2">Clientes</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
+          <router-link :to="{name: 'back.customers.create'}" class="btn btn-sm btn-outline-secondary">
+            Novo <i data-feather="plus-circle"></i>
+          </router-link>
           <button class="btn btn-sm btn-outline-secondary">Imprimir</button>
           <button class="btn btn-sm btn-outline-secondary">Exportar</button>
         </div>
@@ -22,10 +25,11 @@
           <th>Dt Nascimento</th>
           <th>Sexo</th>
           <th class="text-center">Status</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr class="clickable-row" data-href="cliente.html">
+        <tr>
           <td>9000</td>
           <td>Edilson Cichon</td>
           <td>1992</td>
@@ -33,23 +37,10 @@
           <td class="text-center">
             <span data-feather="check-square"></span>
           </td>
-        </tr>
-        <tr class="clickable-row" data-href="cliente.html">
-          <td>7000</td>
-          <td>Fernanda Rodrigues</td>
-          <td>1994</td>
-          <td>Feminimo</td>
-          <td class="text-center">
-            <span data-feather="check-square"></span>
-          </td>
-        </tr>
-        <tr class="clickable-row" data-href="cliente.html">
-          <td>1000</td>
-          <td>Thiago Colosio</td>
-          <td>1986</td>
-          <td>Masculino</td>
-          <td class="text-center">
-            <span data-feather="x"></span>
+          <td>
+            <router-link :to="{ name: 'back.customers.edit' }">
+              <i data-feather="edit-3"></i>
+            </router-link>
           </td>
         </tr>
         </tbody>
