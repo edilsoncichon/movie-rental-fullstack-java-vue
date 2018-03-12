@@ -1,15 +1,14 @@
 'use strict'
 
-export function handleLogin () {
-  let vm = this
-  if (this.username === 'ecichon' && this.password === '123456') {
-    vm.messageValidate = ''
-    vm.$router.push({name: 'back.dashboard'})
-  } else {
-    vm.messageValidate = 'Login inválido!'
+function AuthenticationService () {
+  return {
+    handleLogin: function handleLogin (data) {
+      return (data.username === 'ecichon' && data.password === '123456')
+    },
+    handleLogout: function handleLogout (data) {
+      console.error('//TODO Implements logout')
+    }
   }
 }
 
-export function handleLogout () {
-  console.error('//TODO Implements logout')
-}
+export default AuthenticationService()

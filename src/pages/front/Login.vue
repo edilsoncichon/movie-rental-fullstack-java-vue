@@ -1,12 +1,16 @@
 <template>
   <div class="component-login">
     <h1>{{ title }}</h1>
-    <form action="login" method="post" v-on:submit.prevent="handleLogin">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" v-model="username"/>
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" v-model="password"/>
-      <button type="submit">Entrar</button>
+    <form v-on:submit.prevent="handleLogin" class="col-md-6 offset-3">
+      <div class="form-group">
+        <label for="username">Usuário</label>
+        <input type="text" name="username" id="username" v-model="username" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" name="password" id="password" v-model="password" class="form-control"/>
+      </div>
+      <button type="submit" class="btn btn-primary">Entrar</button>
     </form>
     <alert :message="messageValidate" v-if="messageValidate" />
   </div>
@@ -14,11 +18,18 @@
 
 <script>
 import Alert from '@/components/Alerts'
-import { handleLogin } from '@/services/Authentication'
+import AuthService from '@/services/Authentication'
 export default {
   name: 'Login',
   methods: {
-    handleLogin
+    handleLogin: function () {
+      if (AuthService.handleLogin(this.$data)) {
+        this.messageValidate = ''
+        this.$router.push({name: 'back.dashboard'})
+      } else {
+        this.messageValidate = 'Login inválido!'
+      }
+    }
   },
   components: { Alert },
   data () {
@@ -39,6 +50,7 @@ export default {
 h1, h2 {
   font-weight: normal;
   margin-bottom: 10px;
+  text-align: center;
 }
 form {
   text-align: center;
