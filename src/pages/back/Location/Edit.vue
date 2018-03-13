@@ -13,7 +13,7 @@
         </router-link>
         <button @click="handleDestroy" class="btn btn-sm btn-outline-secondary">
           <i data-feather="trash-2"></i>
-          Excluir
+          Cancelar
         </button>
       </div>
     </div>
@@ -95,9 +95,9 @@
         }
       },
       handleDestroy () {
-        let confirmation = confirm('Tem certeza que deseja excluir esta locação?')
+        let confirmation = confirm('Tem certeza que deseja cancelar esta Locação?')
         if (confirmation) {
-          alert('Locação excluída com sucesso!')
+          alert('Locação cancelada com sucesso!')
         }
       }
     },

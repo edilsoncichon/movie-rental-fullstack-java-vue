@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/pages/front/Login'
 import Home from '@/pages/front/Home'
+import TitleShow from '@/pages/front/TitleShow'
 import Dashboard from '@/pages/back/Dashboard'
 import Locations from '@/pages/back/Location/Index'
 import LocationCreate from '@/pages/back/Location/Create'
@@ -10,18 +11,23 @@ import Returns from '@/pages/back/Return/Index'
 import ReturnCreate from '@/pages/back/Return/Create'
 import Titles from '@/pages/back/Title/Index'
 import TitleCreate from '@/pages/back/Title/Create'
+import TitleEdit from '@/pages/back/Title/Edit'
 import Customers from '@/pages/back/Customer/Index'
 import CustomerCreate from '@/pages/back/Customer/Create'
 import CustomerEdit from '@/pages/back/Customer/Edit'
 import Reports from '@/pages/back/Report/Index'
 import Actors from '@/pages/back/Actor/Index'
 import ActorCreate from '@/pages/back/Actor/Create'
+import ActorEdit from '@/pages/back/Actor/Edit'
 import Directors from '@/pages/back/Director/Index'
 import DirectorCreate from '@/pages/back/Director/Create'
+import DirectorEdit from '@/pages/back/Director/Edit'
 import Classes from '@/pages/back/Classe/Index'
 import ClasseCreate from '@/pages/back/Classe/Create'
+import ClasseEdit from '@/pages/back/Classe/Edit'
 import Items from '@/pages/back/Item/Index'
 import ItemCreate from '@/pages/back/Item/Create'
+import ItemEdit from '@/pages/back/Item/Edit'
 
 Vue.use(Router)
 
@@ -42,6 +48,11 @@ export default new Router({
       path: '/home',
       name: 'front.home',
       component: Home
+    },
+    {
+      path: '/titles/show',
+      name: 'front.titles.show',
+      component: TitleShow
     },
     /* Backend routes */
       /* CRM */
@@ -107,6 +118,11 @@ export default new Router({
       component: ActorCreate
     },
     {
+      path: getPathApp('actors/edit'),
+      name: getPrefixNameBack('actors.edit'),
+      component: ActorEdit
+    },
+    {
       path: getPathApp('directors'),
       name: getPrefixNameBack('directors'),
       component: Directors
@@ -115,6 +131,11 @@ export default new Router({
       path: getPathApp('directors/create'),
       name: getPrefixNameBack('directors.create'),
       component: DirectorCreate
+    },
+    {
+      path: getPathApp('directors/edit'),
+      name: getPrefixNameBack('directors.edit'),
+      component: DirectorEdit
     },
     {
       path: getPathApp('classes'),
@@ -127,6 +148,11 @@ export default new Router({
       component: ClasseCreate
     },
     {
+      path: getPathApp('classes/edit'),
+      name: getPrefixNameBack('classes.edit'),
+      component: ClasseEdit
+    },
+    {
       path: getPathApp('titles'),
       name: getPrefixNameBack('titles'),
       component: Titles
@@ -137,6 +163,11 @@ export default new Router({
       component: TitleCreate
     },
     {
+      path: getPathApp('titles/edit'),
+      name: getPrefixNameBack('titles.edit'),
+      component: TitleEdit
+    },
+    {
       path: getPathApp('items'),
       name: getPrefixNameBack('items'),
       component: Items
@@ -145,6 +176,11 @@ export default new Router({
       path: getPathApp('items/create'),
       name: getPrefixNameBack('items.create'),
       component: ItemCreate
+    },
+    {
+      path: getPathApp('items/edit'),
+      name: getPrefixNameBack('items.edit'),
+      component: ItemEdit
     }
   ]
 })

@@ -23,6 +23,7 @@
           <th>#</th>
           <th>Nome</th>
           <th>Títulos atuados</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +31,11 @@
           <td>9000</td>
           <td>Edilson Cichon</td>
           <td>5</td>
+          <td>
+            <router-link :to="{ name: 'back.actors.edit' }">
+              <i data-feather="edit-3"></i>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>

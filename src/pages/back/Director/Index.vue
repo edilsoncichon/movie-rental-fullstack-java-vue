@@ -23,6 +23,7 @@
           <th>#</th>
           <th>Nome</th>
           <th>Títulos Dirigidos</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +31,11 @@
           <td>7000</td>
           <td>Fernanda Rodrigues</td>
           <td>50</td>
+          <td>
+            <router-link :to="{ name: 'back.directors.edit' }">
+              <i data-feather="edit-3"></i>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>

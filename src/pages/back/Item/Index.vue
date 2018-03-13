@@ -25,6 +25,7 @@
           <th>Título</th>
           <th>Dt Aquisição</th>
           <th>Tipo</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,11 @@
           <td>25/Fev/2016</td>
           <td>
             BlueRay
+          </td>
+          <td>
+            <router-link :to="{ name: 'back.items.edit' }">
+              <i data-feather="edit-3"></i>
+            </router-link>
           </td>
         </tr>
         </tbody>

@@ -28,6 +28,7 @@
           <th>Classe</th>
           <th>Diretor</th>
           <th>Atores</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -40,6 +41,11 @@
           <td>Lançamento</td>
           <td>Diretor X</td>
           <td>Ator 1, Ator 2 e Ator sobrenome3</td>
+          <td>
+            <router-link :to="{ name: 'back.titles.edit' }">
+              <i data-feather="edit-3"></i>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>

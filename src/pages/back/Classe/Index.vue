@@ -24,6 +24,7 @@
           <th>Nome</th>
           <th>Valor</th>
           <th class="text-center">Tempo Máximo Locação</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -32,6 +33,11 @@
           <td>Lançamento</td>
           <td>R$ 2,99</td>
           <td class="text-center">5 dias</td>
+          <td>
+            <router-link :to="{ name: 'back.classes.edit' }">
+              <i data-feather="edit-3"></i>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>
