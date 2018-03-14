@@ -61,7 +61,7 @@
 <script>
   import InputDate from '@/components/Form/InputDate'
   export default {
-    name: 'Location',
+    name: 'LocationEdit',
     components: { InputDate },
     data () {
       return {
@@ -100,9 +100,6 @@
           alert('Locação cancelada com sucesso!')
         }
       }
-    },
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'locations' })
     }
   }
 </script>

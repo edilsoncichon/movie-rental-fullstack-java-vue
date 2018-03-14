@@ -29,9 +29,6 @@
 
 <script>
   export default {
-    name: 'Classe',
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'classes' })
-    }
+    name: 'ClasseCreate'
   }
 </script>

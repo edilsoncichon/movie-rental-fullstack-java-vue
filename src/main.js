@@ -28,5 +28,3 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
-
-featherIcons.replace()

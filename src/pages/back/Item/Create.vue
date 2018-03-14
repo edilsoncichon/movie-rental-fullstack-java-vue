@@ -11,7 +11,7 @@
             <input type="text" class="form-control" id="numberSerie" placeholder="Nº de Série">
           </div>
           <div class="form-group col-md-3">
-            <label for="aquisition_date_day">Dt. Aquisição</label>
+            <label for="aquisition_date">Dt. Aquisição</label>
             <input-date id="aquisition_date"/>
           </div>
           <div class="form-group col-md-6">
@@ -44,10 +44,7 @@
 <script>
   import InputDate from '@/components/Form/InputDate'
   export default {
-    name: 'Item',
-    components: { InputDate },
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'items' })
-    }
+    name: 'ItemCreate',
+    components: { InputDate }
   }
 </script>

@@ -81,10 +81,7 @@
 <script>
   import InputDate from '@/components/Form/InputDate'
   export default {
-    name: 'Customer',
-    components: { InputDate },
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'customers' })
-    }
+    name: 'CustomerCreate',
+    components: { InputDate }
   }
 </script>

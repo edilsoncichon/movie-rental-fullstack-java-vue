@@ -153,10 +153,7 @@
 
 <script>
   export default {
-    name: 'Home',
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'home' })
-    }
+    name: 'Home'
   }
 </script>
 

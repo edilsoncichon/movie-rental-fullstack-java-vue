@@ -157,7 +157,7 @@
 <script>
   import InputDate from '@/components/Form/InputDate'
   export default {
-    name: 'Customer',
+    name: 'CustomerEdit',
     components: { InputDate },
     methods: {
       handleDestroy () {
@@ -166,9 +166,6 @@
           alert('Cliente excluído com sucesso!')
         }
       }
-    },
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'customers' })
     }
   }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="component-login">
+  <div data-component="login">
     <h1>Entrar</h1>
     <div class="container col-xs-2 col-md-6 offset-md-3">
       <form v-on:submit.prevent="handleLogin">
@@ -47,27 +47,24 @@ export default {
       password: '',
       messageValidate: ''
     }
-  },
-  created () {
-    this.$bus.$emit('activateMenuItem', { menu: 'home' })
   }
 }
 </script>
 
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-  margin-bottom: 10px;
-  text-align: center;
-}
-form {
-  text-align: center;
-  display: block;
-}
-input {
-  display: block;
-  margin: auto;
-  margin-bottom: 10px;
-  text-align: center;
-}
+  h1, h2 {
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  form {
+    text-align: center;
+    display: block;
+  }
+  input {
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 </style>
