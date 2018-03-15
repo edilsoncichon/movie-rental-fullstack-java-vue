@@ -44,10 +44,6 @@ export default new Router({
     },
     {
       path: '/',
-      component: Home
-    },
-    {
-      path: '/home',
       name: 'front.home',
       component: Home
     },

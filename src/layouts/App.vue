@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div data-component="app">
     <nav-bar/>
     <div class="container-fluid">
       <div class="row">
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     init () {
-      this.$featherIcons.replace()
+      this.$icons.replace()
       this.identifySidebar()
     },
     identifySidebar () {
