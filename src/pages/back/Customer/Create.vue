@@ -45,7 +45,7 @@
           </div>
           <div class="form-group col-md-2">
             <label for="number">Numero</label>
-            <input type="text" name="address[number]" v-model="number" class="form-control" id="number" placeholder="Numero">
+            <input type="text" name="address[number]" ref="numberInput" v-model="number" class="form-control" id="number" placeholder="Numero">
           </div>
         </div>
         <div class="form-row">
@@ -97,14 +97,15 @@
         }
         this.street = 'Buscando...'
         getCep(this.cep)
-          .then((response) => {
-            this.cep = response.data.cep
-            this.street = response.data.logradouro
-            this.number = response.data.numero
-            this.district = response.data.bairro
-            this.city = response.data.localidade
-            this.country = response.data.pais
-            this.uf = response.data.uf
+          .then((data) => {
+            this.cep = data.cep
+            this.street = data.logradouro
+            this.number = data.numero
+            this.district = data.bairro
+            this.city = data.localidade
+            this.country = data.pais
+            this.uf = data.uf
+            this.$refs.numberInput.focus()
           })
           .catch(() => {
             this.street = 'CEP não encontrado'

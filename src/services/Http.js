@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'localhost:8080/api',
+  baseURL: 'http://localhost:8080/Locadora',
   timeout: '1000',
   headers: {
-    // 'X-Custom-Header': 'teste'
+    // 'X-Custom-Header': 'true'
   }
 })
 

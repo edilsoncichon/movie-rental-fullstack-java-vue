@@ -7,7 +7,7 @@
           <span data-feather="edit-3"></span>
           Editar
         </button>
-        <button @click="handleDestroy" class="btn btn-sm btn-outline-secondary mr-2">
+        <button class="btn btn-sm btn-outline-secondary mr-2">
           <i data-feather="trash-2"></i>
           Excluir
         </button>

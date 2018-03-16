@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './layouts/App'
 import router from './router'
-import IconsPlugin from './plugins/IconsPlugin'
+import IconsPlugin from './plugins/Icons'
 import EventBusPlugin from './plugins/EventBus'
 Vue.use(IconsPlugin)
 Vue.use(EventBusPlugin)

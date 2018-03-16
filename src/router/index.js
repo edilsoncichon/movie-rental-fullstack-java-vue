@@ -116,7 +116,7 @@ export default new Router({
       component: ActorCreate
     },
     {
-      path: getPathApp('actors/edit'),
+      path: getPathApp('actors/:id/edit'),
       name: getPrefixNameBack('actors.edit'),
       component: ActorEdit
     },

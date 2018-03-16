@@ -9,5 +9,5 @@ import http from 'axios'
  */
 export const get = (cep) => {
   const urlApi = `https://viacep.com.br/ws/${cep}/json`
-  return http.get(urlApi)
+  return http.get(urlApi).then(response => response.data)
 }
