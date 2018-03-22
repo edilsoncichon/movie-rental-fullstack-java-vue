@@ -60,7 +60,7 @@
 <script>
   import InputDate from '@/components/Form/InputDate'
   export default {
-    name: 'Location',
+    name: 'LocationCreate',
     components: { InputDate },
     data () {
       return {
@@ -92,9 +92,6 @@
           this.value = ''
         }
       }
-    },
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'returns' })
     }
   }
 </script>

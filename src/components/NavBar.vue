@@ -17,7 +17,7 @@ export default {
   name: 'NavBar',
   data () {
     return {
-      companyName: 'Iutubi'
+      companyName: 'IuTubi'
     }
   }
 }

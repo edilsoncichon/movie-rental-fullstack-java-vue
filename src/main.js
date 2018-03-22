@@ -3,23 +3,12 @@
 import Vue from 'vue'
 import App from './layouts/App'
 import router from './router'
-import featherIcons from 'feather-icons'
+import IconsPlugin from './plugins/Icons'
+import EventBusPlugin from './plugins/EventBus'
+Vue.use(IconsPlugin)
+Vue.use(EventBusPlugin)
 
 Vue.config.productionTip = false
-
-const EventBus = new Vue()
-Object.defineProperties(Vue.prototype, {
-  $bus: {
-    get: function () {
-      return EventBus
-    }
-  },
-  $featherIcons: {
-    get: function () {
-      return featherIcons
-    }
-  }
-})
 
 /* eslint-disable no-new */
 new Vue({
@@ -28,5 +17,3 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
-
-featherIcons.replace()

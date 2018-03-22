@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div data-component="app">
     <nav-bar/>
     <div class="container-fluid">
       <div class="row">
@@ -29,27 +29,34 @@ export default {
   },
   data () {
     return {
-      isCustomer: true,
-      isAdmin: true
+      isCustomer: false,
+      isAdmin: false
     }
   },
-  created () {
-    this.$bus.$on('activateMenuItem', ($event) => {
-      if ($event.menu === 'home') {
-        this.isCustomer = true
-        this.isAdmin = false
-      } else {
-        this.isAdmin = true
-        this.isCustomer = false
-      }
-    })
+  mounted () {
+    this.init()
   },
   updated () {
-    this.$featherIcons.replace()
+    this.init()
+  },
+  methods: {
+    init () {
+      this.$icons.replace()
+      this.identifySidebar()
+    },
+    identifySidebar () {
+      if (this.$route.name.match(/back\./g)) {
+        this.isCustomer = false
+        this.isAdmin = true
+      } else {
+        this.isAdmin = false
+        this.isCustomer = true
+      }
+    }
   }
 }
 </script>
 
 <style lang="scss">
-@import "../assets/scss/app";
+  @import "../assets/scss/app";
 </style>

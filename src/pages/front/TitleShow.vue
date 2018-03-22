@@ -1,6 +1,6 @@
 <template>
   <!--TODO Reutilizar a view do back!-->
-  <div>
+  <div data-component="title-show">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
       <h1 class="h2">Título <small class="operation">Poeira em alto Mar - 2010</small></h1>
       <figure class="figure">
@@ -86,6 +86,6 @@
 
 <script>
   export default {
-    name: 'Title'
+    name: 'TitleShow'
   }
 </script>

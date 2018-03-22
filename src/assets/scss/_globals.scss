@@ -1,5 +1,7 @@
 //TODO Refatorar esse CSS para SCSS
-//TODO Ver exemplos de organização de SCSS
+// 1 - Realocar estilos para os devidos componentes. ***
+// 2 - Abstrair configurações (cores, tamanhos, padrões, etc) para '_settings.scss'
+// 3 - Ver exemplos de organização de SCSS em projetos VUE.
 body {
   font-size: .875rem;
 }
@@ -24,7 +26,7 @@ body {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
-.sidebar-sticky {
+.sidebar-sticky { // TODO Move to SideBar.vue
   position: -webkit-sticky;
   position: sticky;
   top: 48px; /* Height of navbar */

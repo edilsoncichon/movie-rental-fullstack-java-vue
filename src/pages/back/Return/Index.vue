@@ -47,9 +47,6 @@
 
 <script>
   export default {
-    name: 'Returns',
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'returns' })
-    }
+    name: 'ReturnsIndex'
   }
 </script>

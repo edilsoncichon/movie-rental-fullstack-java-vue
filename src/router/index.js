@@ -33,6 +33,8 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
+  linkExactActiveClass: 'active',
+  linkActiveClass: 'active',
   routes: [
     /* Frontend routes */
     {
@@ -42,10 +44,6 @@ export default new Router({
     },
     {
       path: '/',
-      component: Home
-    },
-    {
-      path: '/home',
       name: 'front.home',
       component: Home
     },
@@ -118,7 +116,7 @@ export default new Router({
       component: ActorCreate
     },
     {
-      path: getPathApp('actors/edit'),
+      path: getPathApp('actors/:id/edit'),
       name: getPrefixNameBack('actors.edit'),
       component: ActorEdit
     },

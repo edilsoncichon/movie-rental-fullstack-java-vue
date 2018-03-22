@@ -27,12 +27,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>9000</td>
-          <td>Edilson Cichon</td>
-          <td>5</td>
+        <tr v-for="actor in list">
+          <td>{{ actor._id }}</td>
+          <td>{{ actor.name }}</td>
+          <td>{{ actor.titlesActuated }}</td>
           <td>
-            <router-link :to="{ name: 'back.actors.edit' }">
+            <router-link :to="{ name: 'back.actors.edit', params: { id: actor._id } }">
               <i data-feather="edit-3"></i>
             </router-link>
           </td>
@@ -44,10 +44,30 @@
 </template>
 
 <script>
+  import { getAll as getActors } from '@/services/Actor'
   export default {
-    name: 'Customers',
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'actors' })
+    name: 'CustomersIndex',
+    data () {
+      return {
+        actors: []
+      }
+    },
+    computed: {
+      list () {
+        return this.actors
+      }
+    },
+    mounted () {
+      getActors()
+        .then((data) => {
+          this.actors = data
+        })
+        .then(() => {
+          this.$icons.replace()
+        })
+        .catch(() => {
+          console.error('getActors failed!')
+        })
     }
   }
 </script>

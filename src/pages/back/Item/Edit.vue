@@ -54,10 +54,7 @@
 <script>
   import InputDate from '@/components/Form/InputDate'
   export default {
-    name: 'Item',
-    components: { InputDate },
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'items' })
-    }
+    name: 'ItemEdit',
+    components: { InputDate }
   }
 </script>

@@ -55,9 +55,6 @@
 
 <script>
   export default {
-    name: 'Titles',
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'titles' })
-    }
+    name: 'TitlesIndex'
   }
 </script>

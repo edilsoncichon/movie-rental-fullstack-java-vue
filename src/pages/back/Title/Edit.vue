@@ -84,9 +84,6 @@
 
 <script>
   export default {
-    name: 'Title',
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'titles' })
-    }
+    name: 'TitleEdit'
   }
 </script>

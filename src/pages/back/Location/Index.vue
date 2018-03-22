@@ -53,9 +53,6 @@
 
 <script>
   export default {
-    name: 'Locations',
-    created () {
-      this.$bus.$emit('activateMenuItem', { menu: 'locations' })
-    }
+    name: 'LocationsIndex'
   }
 </script>
