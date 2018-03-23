@@ -1,14 +1,23 @@
 package domains;
 
+import java.util.Collection;
+
 public class Actor {
     private int id;
     private String name;
-    private int titlesActuated;
+    private Collection titles;
 
-    public Actor(int id, String name, int titlesActuated) {
-        this.id = id;
+    public Actor(String name, Collection titles) {
         this.name = name;
-        this.titlesActuated = titlesActuated;
+        this.titles = titles;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getName() {
@@ -19,19 +28,11 @@ public class Actor {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public Collection getTitles() {
+        return titles;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getTitlesActuated() {
-        return titlesActuated;
-    }
-
-    public void setTitlesActuated(int titlesActuated) {
-        this.titlesActuated = titlesActuated;
+    public void setTitles(Collection titles) {
+        this.titles = titles;
     }
 }

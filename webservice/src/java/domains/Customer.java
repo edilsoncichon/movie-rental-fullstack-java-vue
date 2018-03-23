@@ -1,25 +1,26 @@
 package domains;
 
-public class Customer {
+import java.util.Collection;
+import java.util.Date;
+
+public abstract class Customer {
     private int id;
     private String name;
     private String cpf;
-    private String dtNascimento;
-    private String endereco;
-    private String sexo;
-    private String tipo;
-    private String comunicados;
-    private String obs;
+    private Date birthDate;
+    private Address address;
+    private String sex;
+    private User user;
+    private Collection locations;
 
-    public Customer(String name, String cpf, String dtNascimento, String endereco, String sexo, String tipo, String comunicados, String obs) {
+    public Customer(String name, String cpf, Date birthDate, Address address, String sex, User user, Collection locations) {
         this.name = name;
         this.cpf = cpf;
-        this.dtNascimento = dtNascimento;
-        this.endereco = endereco;
-        this.sexo = sexo;
-        this.tipo = tipo;
-        this.comunicados = comunicados;
-        this.obs = obs;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.sex = sex;
+        this.user = user;
+        this.locations = locations;
     }
 
     public int getId() {
@@ -29,15 +30,7 @@ public class Customer {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public String getDtNascimento() {
-        return dtNascimento;
-    }
 
-    public void setDtNascimento(String dtNascimento) {
-        this.dtNascimento = dtNascimento;
-    }
-    
     public String getName() {
         return name;
     }
@@ -54,49 +47,44 @@ public class Customer {
         this.cpf = cpf;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public String getSexo() {
-        return sexo;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getSex() {
+        return sex;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getComunicados() {
-        return comunicados;
+    public User getUser() {
+        return user;
     }
 
-    public void setComunicados(String comunicados) {
-        this.comunicados = comunicados;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getObs() {
-        return obs;
+    public Collection getLocations() {
+        return locations;
     }
 
-    public void setObs(String obs) {
-        this.obs = obs;
-    }
-
-    @Override
-    public String toString() {
-        return this.getCpf().concat(" - ").concat(this.getName());
+    public void setLocations(Collection locations) {
+        this.locations = locations;
     }
     
 }

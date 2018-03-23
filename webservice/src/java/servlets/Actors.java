@@ -20,9 +20,9 @@ public class Actors extends ServletBase {
 
     public Actors() {
         actors = new ArrayList();
-        actors.add(new Actor(123, "Edilson Cichon", 5));
-        actors.add(new Actor(123, "Fernanda Cichon", 10));
-        actors.add(new Actor(12, "Ivone Cichon", 2));
+        actors.add(new Actor("Edilson Cichon", null));
+        actors.add(new Actor("Fernanda Cichon", null));
+        actors.add(new Actor("Ivone Cichon", null));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Actors extends ServletBase {
             builder.add(Json.createObjectBuilder()
                     .add("_id", actor.getId())
                     .add("name", actor.getName())
-                    .add("titlesActuated", actor.getTitlesActuated()));
+                    .add("titlesActuated", actor.getTitles().size()));
         });
         return builder;
     }

@@ -1,14 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domains;
 
-/**
- *
- * @author Edilson
- */
+import java.util.Collection;
+
 public class Director {
+    private int id;
+    private String name;
+    private Collection titles;
+
+    public Director(String name, Collection titles) {
+        this.name = name;
+        this.titles = titles;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Collection getTitles() {
+        return titles;
+    }
+
+    public void setTitles(Collection titles) {
+        this.titles = titles;
+    }
     
 }
