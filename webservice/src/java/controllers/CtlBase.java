@@ -1,4 +1,4 @@
-package servlets;
+package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ServletBase", urlPatterns = {"/ServletBase"})
-public abstract class ServletBase extends HttpServlet {
+public abstract class CtlBase extends HttpServlet {
 
     private void configRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

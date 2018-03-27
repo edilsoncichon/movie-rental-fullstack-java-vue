@@ -1,4 +1,4 @@
-package servlets;
+package controllers;
 
 import domains.CustomerPartner;
 import java.util.List;
@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Customers", urlPatterns = {"/customers"})
-public class Customers extends ServletBase {
+public class CtlCustomers extends CtlBase {
     
     private List<CustomerPartner> partners;
 
-    public Customers() {
+    public CtlCustomers() {
         super();
         partners = new ArrayList<>();
         partners.add(new CustomerPartner("Edilson Cichon", "13953108743", new Date(1992, 10, 10), null, "M", null, null, null));

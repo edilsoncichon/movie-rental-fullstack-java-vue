@@ -2,15 +2,15 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Actors</servlet-name>
-        <servlet-class>servlets.Actors</servlet-class>
+        <servlet-class>controllers.CtlActors</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Customers</servlet-name>
-        <servlet-class>servlets.Customers</servlet-class>
+        <servlet-class>controllers.CtlCustomers</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Directors</servlet-name>
-        <servlet-class>servlets.Directors</servlet-class>
+        <servlet-class>controllers.CtlDirectors</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Actors</servlet-name>

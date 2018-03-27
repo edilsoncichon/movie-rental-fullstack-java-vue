@@ -1,11 +1,18 @@
 package domains;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
-public class Actor {
+@Entity
+public class Actor implements Serializable {
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
     private Collection titles;
+
+    public Actor() {}
 
     public Actor(String name, Collection titles) {
         this.name = name;

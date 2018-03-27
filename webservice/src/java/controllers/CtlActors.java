@@ -1,8 +1,8 @@
-package servlets;
+package controllers;
 
 import domains.Actor;
+import applications.AplActors;
 import java.util.List;
-import java.util.ArrayList;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.json.Json;
@@ -14,20 +14,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Actors", urlPatterns = "/actors")
-public class Actors extends ServletBase {
-    
-    private List<Actor> actors;
+public class CtlActors extends CtlBase {
+    private AplActors apl;
 
-    public Actors() {
-        actors = new ArrayList();
-        actors.add(new Actor("Edilson Cichon", null));
-        actors.add(new Actor("Fernanda Cichon", null));
-        actors.add(new Actor("Ivone Cichon", null));
+    public CtlActors() {
+        apl = new AplActors();
     }
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, PrintWriter out)
             throws ServletException, IOException {
+        
+        //TODO Tratar OPERACAO que vem do front e redirecionar para o método correto.
+        request.getMethod();
+        
+        List actors = apl.getAll();
         JsonObject actorsJson = Json.createObjectBuilder()
                 .add("data", list2Json(actors))
                 .build();
