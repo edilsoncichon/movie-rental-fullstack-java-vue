@@ -59,15 +59,33 @@ public abstract class CtlBase extends HttpServlet {
             throws ServletException, IOException {
         configRequest(request, response);
     }
-
+    
     /**
-     * Returns a short description of the servlet.
+     * Handles the HTTP <code>PUT</code> method.
      *
-     * @return a String containing servlet description
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
      */
     @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        configRequest(request, response);
+    }
+    
+    /**
+     * Handles the HTTP <code>DELETE</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        configRequest(request, response);
+    }
+    // </editor-fold>
 }
