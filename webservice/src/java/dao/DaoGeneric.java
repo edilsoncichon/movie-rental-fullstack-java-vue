@@ -5,11 +5,13 @@ import java.sql.SQLException;
 import org.hibernate.Session;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 
 public abstract class DaoGeneric {
 
     protected Session session;
+    protected Class domain;
     private final int SAVE = 0;
     private final int UPDATE = 1;
     private final int DELETE = 3;
@@ -54,15 +56,23 @@ public abstract class DaoGeneric {
         persist(obj, DELETE);
     }
      
-    public List getAll(Class classe) {
+    public List getAll() {
         List list;
         session = openSession();
         session.beginTransaction();
-        Criteria cons = session.createCriteria(classe);
+        Criteria cons = session.createCriteria(this.domain);
         list = cons.list();
         session.getTransaction().commit();
         session.close();
         return list;
+    }
+    
+    public Object get(int id) {
+        Criteria crit = openSession().createCriteria(this.domain);
+        crit.add(Restrictions.eq("id", id));
+        List list = crit.list();
+        session.close();
+        return list.get(0);
     }
     
     public List search(String filter) {
