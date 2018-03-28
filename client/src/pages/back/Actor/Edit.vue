@@ -18,7 +18,7 @@
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="name">Nome</label>
-            <input type="email" class="form-control" id="name" placeholder="Nome">
+            <input type="email" class="form-control" id="name" placeholder="Nome" v-model="actor.name">
           </div>
         </div>
         <div class="text-right">
@@ -30,7 +30,23 @@
 </template>
 
 <script>
+  import { get } from '@/services/Actor'
   export default {
-    name: 'CustomerEdit'
+    name: 'CustomerEdit',
+    data () {
+      return {
+        actor: {
+          _id: '',
+          name: '',
+          titlesActuated: 0
+        }
+      }
+    },
+    mounted () {
+      get(this.$route.params.id)
+        .then(data => {
+          this.actor = data
+        })
+    }
   }
 </script>

@@ -31,7 +31,7 @@ import ItemEdit from '@/pages/back/Item/Edit'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   linkExactActiveClass: 'active',
   linkActiveClass: 'active',
@@ -182,6 +182,8 @@ export default new Router({
     }
   ]
 })
+
+export default router
 
 function getPathApp (path) {
   return '/' + path

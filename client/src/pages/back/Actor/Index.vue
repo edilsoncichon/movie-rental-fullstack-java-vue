@@ -46,7 +46,7 @@
 <script>
   import { getAll as getActors } from '@/services/Actor'
   export default {
-    name: 'CustomersIndex',
+    name: 'ActorsIndex',
     data () {
       return {
         actors: []
@@ -57,17 +57,22 @@
         return this.actors
       }
     },
+    methods: {
+      getActors () {
+        getActors()
+          .then((data) => {
+            this.actors = data
+          })
+          .then(() => {
+            this.$icons.replace()
+          })
+          .catch(() => {
+            console.error('getActors failed!')
+          })
+      }
+    },
     mounted () {
-      getActors()
-        .then((data) => {
-          this.actors = data
-        })
-        .then(() => {
-          this.$icons.replace()
-        })
-        .catch(() => {
-          console.error('getActors failed!')
-        })
+      this.getActors()
     }
   }
 </script>
