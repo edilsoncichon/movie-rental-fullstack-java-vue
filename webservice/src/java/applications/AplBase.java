@@ -4,11 +4,14 @@ import dao.DaoGeneric;
 import java.util.List;
 
 public abstract class AplBase {
-    protected Class domain;
     protected DaoGeneric dao;
     
     public List getAll() {
-        return dao.getAll(domain);
+        return dao.getAll();
+    }
+    
+    public Object get(int id) {
+        return dao.get(id);
     }
     
     public void save(Object obj) throws Exception {
