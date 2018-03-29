@@ -4,9 +4,8 @@ import domains.Domain;
 import java.util.List;
 import javax.json.Json;
 import java.io.IOException;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import javax.json.JsonArrayBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.annotation.WebServlet;
@@ -76,27 +75,27 @@ public abstract class CtlBase extends HttpServlet {
         res.setStatus(404);
     }
     
+    protected String toJSON(List data) {
+        JsonObject listJson = Json.createObjectBuilder()
+                    .add("data", list2Json(data)).build();
+        return listJson.toString();
+    }
+    
+    protected String toJSON(Domain domain) {
+        JsonObject objJSON = Json.createObjectBuilder()
+                .add("data", domain.toJsonObject()).build();
+        return objJSON.toString();
+    }
+    
     /**
      * Converte um objeto List de Domains para um JsonArrayBuilder.
      * 
      * @param list
      * @return 
      */
-    protected JsonArrayBuilder list2Json(List<Domain> list) {
+    private JsonArrayBuilder list2Json(List<Domain> list) {
         JsonArrayBuilder builder = Json.createArrayBuilder();
-        list.forEach(domain -> { builder.add(domain.toJSON()); });
+        list.forEach(domain -> { builder.add(domain.toJsonObject()); });
         return builder;
-    }
-    
-    protected String toJSONResponse(List data) {
-        JsonObject listJson = Json.createObjectBuilder()
-                    .add("data", list2Json(data)).build();
-        return listJson.toString();
-    }
-    
-    protected String toJSONResponse(Domain domain) {
-        JsonObject objJSON = Json.createObjectBuilder()
-                .add("data", domain.toJSON()).build();
-        return objJSON.toString();
     }
 }

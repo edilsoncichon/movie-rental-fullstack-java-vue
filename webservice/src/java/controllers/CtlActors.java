@@ -26,10 +26,10 @@ public class CtlActors extends CtlBase {
         String id = req.getParameter("id");
         if (id == null) {
             List list = apl.getAll();
-            out.print(toJSONResponse(list));
+            out.print(toJSON(list));
         } else {
             Domain domain = (Domain) apl.get(Integer.valueOf(id));
-            out.print(toJSONResponse(domain));
+            out.print(toJSON(domain));
         }
     }
 }
