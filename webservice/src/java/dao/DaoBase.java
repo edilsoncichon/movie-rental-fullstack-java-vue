@@ -8,7 +8,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 
-public abstract class DaoGeneric {
+public abstract class DaoBase {
 
     protected Session session;
     protected Class domain;
@@ -16,7 +16,7 @@ public abstract class DaoGeneric {
     private final int UPDATE = 1;
     private final int DELETE = 3;
     
-    public DaoGeneric() {}
+    public DaoBase() {}
     
     private void persist(Object obj, int scenario) throws SQLException {
         try {

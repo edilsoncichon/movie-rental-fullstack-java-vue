@@ -4,9 +4,9 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,6 +22,7 @@ public class FilterCORS implements Filter {
  
         res.addHeader("Access-Control-Allow-Origin", "*");
         res.addHeader("Access-Control-Allow-Methods", "GET, OPTIONS, HEAD, PUT, DELETE, POST");
+        res.addHeader("Access-Control-Allow-Headers", "content-type");
  
         // For HTTP OPTIONS verb/method reply with ACCEPTED status code -- per CORS handshake
         if (req.getMethod().equals("OPTIONS")) {
