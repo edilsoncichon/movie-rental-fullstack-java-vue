@@ -4,5 +4,5 @@ import javax.json.JsonObjectBuilder;
 
 public abstract class Domain {
     
-    public abstract JsonObjectBuilder toJSON();
+    public abstract JsonObjectBuilder toJsonObject();
 }
