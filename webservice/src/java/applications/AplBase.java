@@ -1,10 +1,10 @@
 package applications;
 
-import dao.DaoGeneric;
+import dao.DaoBase;
 import java.util.List;
 
 public abstract class AplBase {
-    protected DaoGeneric dao;
+    protected DaoBase dao;
     
     public List getAll() {
         return dao.getAll();

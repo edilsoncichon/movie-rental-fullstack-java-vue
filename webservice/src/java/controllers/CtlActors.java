@@ -1,20 +1,20 @@
 package controllers;
 
 import domains.Domain;
-import applications.AplBase;
 import applications.AplActors;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.ServletException;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.List;
+import javax.json.JsonObject;
 
 @WebServlet(name = "Actors", urlPatterns = "/actors")
 public class CtlActors extends CtlBase {
 
-    private AplBase apl;
+    private AplActors apl;
 
     public CtlActors() {
         apl = new AplActors();
@@ -32,4 +32,16 @@ public class CtlActors extends CtlBase {
             out.print(toJSON(domain));
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        try {
+            JsonObject data = getContentRequest(req);
+            apl.save(data.getString("name"));
+        } catch (Exception ex) {
+            res.getWriter().print(toJSONError(ex.getMessage()));
+            res.setStatus(500);
+        }
+    }
+    
 }

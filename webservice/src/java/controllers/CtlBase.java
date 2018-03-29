@@ -4,6 +4,8 @@ import domains.Domain;
 import java.util.List;
 import javax.json.Json;
 import java.io.IOException;
+import java.io.StringReader;
+import java.util.stream.Collectors;
 import javax.json.JsonObject;
 import javax.json.JsonArrayBuilder;
 import javax.servlet.ServletException;
@@ -73,6 +75,26 @@ public abstract class CtlBase extends HttpServlet {
             throws ServletException, IOException {
         res.getWriter().print("Info: [DELETE] method not implemented for this resource!");
         res.setStatus(404);
+    }
+    
+    /**
+     * Captura o conteúdo (body) da requisição em texto puro, e converte para 
+     * um JsonObject manipulável.
+     * 
+     * @param req
+     * @return
+     * @throws IOException 
+     */
+    protected JsonObject getContentRequest(HttpServletRequest req) throws IOException {
+        String data = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        JsonObject dataJson = Json.createReader(new StringReader(data)).readObject();
+        return dataJson;
+    }
+    
+    protected String toJSONError(String message) {
+        JsonObject listJson = Json.createObjectBuilder()
+                    .add("error", message).build();
+        return listJson.toString();
     }
     
     protected String toJSON(List data) {
