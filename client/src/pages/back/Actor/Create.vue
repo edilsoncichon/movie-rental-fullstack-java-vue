@@ -4,8 +4,7 @@
       <h1 class="h2">Ator <small class="operation">novo</small></h1>
     </div>
     <div>
-      <div class="alert alert-danger" role="alert" v-show="error">{{ error }}</div>
-      <div class="alert alert-success" role="alert" v-show="success">{{ success }}</div>
+      <alert :type="messageType" :message="message" v-if="hasMessage"/>
       <form v-on:submit.prevent="createActor">
         <div class="form-row">
           <div class="form-group col-md-12">
@@ -23,25 +22,34 @@
 
 <script>
   import { create as createActor } from '@/services/Actor'
+  import Alert from '@/components/Alert'
+
   export default {
     name: 'CustomerCreate',
+    components: { Alert },
     methods: {
       createActor () {
         createActor({name: this.name})
           .then(() => {
-            this.success = 'Salvo com sucesso!'
+            this.message = 'Ator registrado com sucesso!'
           })
-          .catch(function (data) {
+          .catch((data) => {
             console.error(data)
-            this.error = data
+            this.message = data.response.data.error
+            this.messageType = 'error'
           })
       }
     },
     data () {
       return {
         name: '',
-        success: '',
-        error: ''
+        message: '',
+        messageType: 'success'
+      }
+    },
+    computed: {
+      hasMessage () {
+        return !!this.message
       }
     }
   }

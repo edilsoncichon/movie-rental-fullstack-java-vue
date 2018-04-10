@@ -43,5 +43,16 @@ public class CtlActors extends CtlBase {
             res.setStatus(500);
         }
     }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        int id = Integer.valueOf(req.getParameter("id"));
+        try {
+            apl.delete(id);
+        } catch (Exception ex) {
+            res.getWriter().print(toJSONError(ex.getMessage()));
+            res.setStatus(500);
+        }
+    }
     
 }
