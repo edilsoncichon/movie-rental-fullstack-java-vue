@@ -7,18 +7,19 @@
           <span data-feather="edit-3"></span>
           Editar
         </button>
-        <button class="btn btn-sm btn-outline-secondary mr-2">
+        <button @click="handleRemove" class="btn btn-sm btn-outline-secondary mr-2">
           <i data-feather="trash-2"></i>
           Excluir
         </button>
       </div>
     </div>
     <div>
+      <alert :type="messageType" :message="message" v-if="hasMessage"/>
       <form>
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="name">Nome</label>
-            <input type="email" class="form-control" id="name" placeholder="Nome" v-model="actor.name">
+            <input type="text" class="form-control" id="name" placeholder="Nome" v-model="actor.name">
           </div>
         </div>
         <div class="text-right">
@@ -30,16 +31,20 @@
 </template>
 
 <script>
-  import { get } from '@/services/Actor'
+  import { get, remove } from '@/services/Actor'
+  import Alert from '@/components/Alert'
   export default {
     name: 'CustomerEdit',
+    components: {Alert},
     data () {
       return {
         actor: {
           _id: '',
           name: '',
           titlesActuated: 0
-        }
+        },
+        message: '',
+        messageType: 'success'
       }
     },
     mounted () {
@@ -47,6 +52,24 @@
         .then(data => {
           this.actor = data
         })
+    },
+    methods: {
+      handleRemove () {
+        remove(this.$route.params.id)
+          .then(() => {
+            this.message = 'Ator deletado com sucesso!'
+          })
+          .catch((data) => {
+            console.error(data)
+            this.message = data.response.data.error
+            this.messageType = 'error'
+          })
+      }
+    },
+    computed: {
+      hasMessage () {
+        return !!this.message
+      }
     }
   }
 </script>

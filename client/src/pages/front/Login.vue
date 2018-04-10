@@ -19,36 +19,37 @@
         </div>
         <button type="submit" class="btn btn-primary">Entrar</button>
       </form>
-      <alert :message="messageValidate" v-if="messageValidate" />
+      <alert :type="'error'" :message="messageValidate" v-if="messageValidate"/>
     </div>
   </div>
 </template>
 
 <script>
-import Alert from '@/components/Alerts'
-import AuthService from '@/services/Authentication'
-export default {
-  name: 'Login',
-  methods: {
-    handleLogin: function () {
-      if (AuthService.handleLogin(this.$data)) {
-        this.messageValidate = ''
-        this.$router.push({name: 'back.dashboard'})
-      } else {
-        this.messageValidate = 'Login inválido!'
+  import Alert from '@/components/Alert'
+  import AuthService from '@/services/Authentication'
+
+  export default {
+    name: 'Login',
+    methods: {
+      handleLogin: function () {
+        if (AuthService.handleLogin(this.$data)) {
+          this.messageValidate = ''
+          this.$router.push({name: 'back.dashboard'})
+        } else {
+          this.messageValidate = 'Login inválido!'
+        }
+      }
+    },
+    components: { Alert },
+    data () {
+      return {
+        title: 'Entrar',
+        username: '',
+        password: '',
+        messageValidate: ''
       }
     }
-  },
-  components: { Alert },
-  data () {
-    return {
-      title: 'Entrar',
-      username: '',
-      password: '',
-      messageValidate: ''
-    }
   }
-}
 </script>
 
 <style scoped>
@@ -66,5 +67,8 @@ export default {
     margin: auto;
     margin-bottom: 10px;
     text-align: center;
+  }
+  .alert {
+    margin-top: 10px;
   }
 </style>
