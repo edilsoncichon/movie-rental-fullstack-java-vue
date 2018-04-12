@@ -2,17 +2,13 @@ package controllers;
 
 import domains.Domain;
 import applications.AplActors;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.annotation.WebServlet;
-import java.io.PrintWriter;
-import java.io.IOException;
 import java.util.List;
+import java.io.IOException;
 import javax.json.JsonObject;
+import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "Actors", urlPatterns = "/actors")
-public class CtlActors extends CtlBase {
+public class CtlActors extends Ctl {
 
     private AplActors apl;
 
@@ -20,39 +16,39 @@ public class CtlActors extends CtlBase {
         apl = new AplActors();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        PrintWriter out = res.getWriter();
-        String id = req.getParameter("id");
+    public void processGet() throws IOException {
+        String id = getServletRequest().getParameter("id");
         if (id == null) {
             List list = apl.getAll();
-            out.print(toJSON(list));
+            getResponse().renderList(list);
         } else {
             Domain domain = (Domain) apl.get(Integer.valueOf(id));
-            out.print(toJSON(domain));
+            getResponse().renderItem(domain);
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void processPost() throws IOException {
         try {
-            JsonObject data = getContentRequest(req);
+            JsonObject data = getRequest().getContent();
             apl.save(data.getString("name"));
+            getResponse().renderOk("Actor registered with success!");
         } catch (Exception ex) {
-            res.getWriter().print(toJSONError(ex.getMessage()));
-            res.setStatus(500);
+            getResponse().renderError(ex.getMessage(), 500);
         }
     }
+    //TODO To implement
+    public void processPut() throws IOException, Exception {
+        String id = getServletRequest().getParameter("id");
+        
+        JsonObject data = getRequest().getContent();
+        apl.change(data.getString("name"));
+        getResponse().renderOk("Actor edited with success!");
+    }
 
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        int id = Integer.valueOf(req.getParameter("id"));
-        try {
-            apl.delete(id);
-        } catch (Exception ex) {
-            res.getWriter().print(toJSONError(ex.getMessage()));
-            res.setStatus(500);
-        }
+    public void processDelete() throws IOException, Exception {
+        int id = Integer.valueOf(getServletRequest().getParameter("id"));
+        apl.delete(id);
+        getResponse().renderOk("Actor deleted with success!");
     }
     
 }
