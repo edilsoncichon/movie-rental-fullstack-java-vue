@@ -1,20 +1,20 @@
 package controllers;
 
-import applications.AplDirectors;
 import domains.Domain;
-import java.util.List;
-import javax.json.JsonObject;
+import applications.AplActors;
 import javax.servlet.annotation.WebServlet;
+import javax.json.JsonObject;
+import java.util.List;
 
-@WebServlet(name = "Directors", urlPatterns = "/directors")
-public class CtlDirectors extends Controller {
-    
-    private AplDirectors apl;
+@WebServlet(name = "Actors", urlPatterns = "/actors")
+public class ActorsController extends Controller {
 
-    public CtlDirectors() {
-        this.apl = new AplDirectors();
+    private AplActors apl;
+
+    public ActorsController() {
+        apl = new AplActors();
     }
-    
+
     public void processGet() throws Exception {
         String id = getServletRequest().getParameter("id");
         if (id == null) {
@@ -29,7 +29,7 @@ public class CtlDirectors extends Controller {
     public void processPost() throws Exception {
         JsonObject data = getRequest().getContent();
         apl.save(data.getString("name"));
-        getResponse().renderOk("Director registered with success!");
+        getResponse().renderOk("Actor registered with success!");
     }
     
     public void processPut() throws Exception {
@@ -39,12 +39,13 @@ public class CtlDirectors extends Controller {
                 Integer.valueOf(id),
                 data.getString("name")
         );
-        getResponse().renderOk("Director edited with success!");
+        getResponse().renderOk("Actor edited with success!");
     }
 
     public void processDelete() throws Exception {
         int id = Integer.valueOf(getServletRequest().getParameter("id"));
         apl.delete(id);
-        getResponse().renderOk("Director deleted with success!");
+        getResponse().renderOk("Actor deleted with success!");
     }
+    
 }

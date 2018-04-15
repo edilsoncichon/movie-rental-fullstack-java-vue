@@ -3,6 +3,6 @@ package controllers;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "Customers", urlPatterns = {"/customers"})
-public class CtlCustomers extends Controller {
+public class CustomersController extends Controller {
     //empty
 }
