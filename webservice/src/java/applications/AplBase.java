@@ -10,16 +10,20 @@ public abstract class AplBase {
         return dao.getAll();
     }
     
-    public Object get(int id) {
-        return dao.get(id);
+    public Object get(int id) throws Exception {
+        try {
+            return dao.get(id);
+        } catch (IndexOutOfBoundsException ex) {
+            throw new Exception("item ["+ id +"] not exists.");
+        }
     }
     
     public void save(Object obj) throws Exception {
         dao.save(obj);
     }
     
-    public void change(Object obj) throws Exception {
-        dao.change(obj);
+    public void update(Object obj) throws Exception {
+        dao.update(obj);
     }
     
     public void delete(Object obj) throws Exception {

@@ -48,7 +48,7 @@ public abstract class DaoBase {
         persist(obj, SAVE);    
     }
     
-    public void change(Object obj) throws SQLException, ClassNotFoundException {
+    public void update(Object obj) throws SQLException, ClassNotFoundException {
         persist(obj, UPDATE);
     }
     

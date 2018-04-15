@@ -2,13 +2,12 @@ package controllers;
 
 import domains.Domain;
 import applications.AplActors;
-import java.util.List;
-import java.io.IOException;
-import javax.json.JsonObject;
 import javax.servlet.annotation.WebServlet;
+import javax.json.JsonObject;
+import java.util.List;
 
 @WebServlet(name = "Actors", urlPatterns = "/actors")
-public class CtlActors extends Ctl {
+public class CtlActors extends Controller {
 
     private AplActors apl;
 
@@ -16,7 +15,7 @@ public class CtlActors extends Ctl {
         apl = new AplActors();
     }
 
-    public void processGet() throws IOException {
+    public void processGet() throws Exception {
         String id = getServletRequest().getParameter("id");
         if (id == null) {
             List list = apl.getAll();
@@ -27,25 +26,23 @@ public class CtlActors extends Ctl {
         }
     }
 
-    public void processPost() throws IOException {
-        try {
-            JsonObject data = getRequest().getContent();
-            apl.save(data.getString("name"));
-            getResponse().renderOk("Actor registered with success!");
-        } catch (Exception ex) {
-            getResponse().renderError(ex.getMessage(), 500);
-        }
-    }
-    //TODO To implement
-    public void processPut() throws IOException, Exception {
-        String id = getServletRequest().getParameter("id");
-        
+    public void processPost() throws Exception {
         JsonObject data = getRequest().getContent();
-        apl.change(data.getString("name"));
+        apl.save(data.getString("name"));
+        getResponse().renderOk("Actor registered with success!");
+    }
+    
+    public void processPut() throws Exception {
+        String id = getServletRequest().getParameter("id");
+        JsonObject data = getRequest().getContent();
+        apl.update(
+                Integer.valueOf(id),
+                data.getString("name")
+        );
         getResponse().renderOk("Actor edited with success!");
     }
 
-    public void processDelete() throws IOException, Exception {
+    public void processDelete() throws Exception {
         int id = Integer.valueOf(getServletRequest().getParameter("id"));
         apl.delete(id);
         getResponse().renderOk("Actor deleted with success!");

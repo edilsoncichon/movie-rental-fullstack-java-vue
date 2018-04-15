@@ -3,16 +3,19 @@ package controllers;
 import controllers.support.Request;
 import controllers.support.Response;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public abstract class Ctl extends HttpServlet {
+public abstract class Controller extends HttpServlet {
     private Request request;
     private Response response;
     
-    public void boot(HttpServletRequest servletReq, HttpServletResponse servletRes) 
+    private void boot(HttpServletRequest servletReq, HttpServletResponse servletRes) 
             throws IOException {
         this.request = new Request(servletReq);
         this.response = new Response(servletRes);
@@ -34,8 +37,10 @@ public abstract class Ctl extends HttpServlet {
             processRequest("processGet");
         } catch (NoSuchMethodException e) {
             response.renderError("[GET] method not implemented for this resource!", 501);
+        } catch (InvocationTargetException ex) {
+            response.renderError(ex.getTargetException().getMessage() + " ", 500);
         } catch (Exception ex) {
-            response.renderError("error: " + ex.getMessage(), 500);
+            response.renderError("unknown error.", 500);
         }
     }
 
@@ -55,8 +60,10 @@ public abstract class Ctl extends HttpServlet {
             processRequest("processPost");
         } catch (NoSuchMethodException e) {
             response.renderError("[POST] method not implemented for this resource!", 501);
+        } catch (InvocationTargetException ex) {
+            response.renderError(ex.getTargetException().getMessage() + " ", 500);
         } catch (Exception ex) {
-            response.renderError("error: " + ex.getMessage(), 500);
+            response.renderError("unknown error.", 500);
         }
     }
     
@@ -76,8 +83,10 @@ public abstract class Ctl extends HttpServlet {
             processRequest("processPut");
         } catch (NoSuchMethodException e) {
             response.renderError("[PUT] method not implemented for this resource!", 501);
+        } catch (InvocationTargetException ex) {
+            response.renderError(ex.getTargetException().getMessage() + " ", 500);
         } catch (Exception ex) {
-            response.renderError("error: " + ex.getMessage(), 500);
+            response.renderError("unknown error.", 500);
         }
     }
     
@@ -97,8 +106,10 @@ public abstract class Ctl extends HttpServlet {
             processRequest("processDelete");
         } catch (NoSuchMethodException e) {
             response.renderError("[DELETE] method not implemented for this resource!", 501);
+        } catch (InvocationTargetException ex) {
+            response.renderError(ex.getTargetException().getMessage() + " ", 500);
         } catch (Exception ex) {
-            response.renderError("error: " + ex.getMessage(), 500);
+            response.renderError("unknown error.", 500);
         }
     }
     

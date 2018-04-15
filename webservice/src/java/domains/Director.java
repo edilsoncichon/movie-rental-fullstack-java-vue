@@ -1,6 +1,7 @@
 package domains;
 
 import java.io.Serializable;
+import javax.json.Json;
 import javax.json.JsonObjectBuilder;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,7 +44,9 @@ public class Director extends Domain implements Serializable {
 
     @Override
     public JsonObjectBuilder toJsonObject() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Json.createObjectBuilder()
+                .add("_id", getId())
+                .add("name", getName());
     }
     
 }

@@ -27,12 +27,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>7000</td>
-          <td>Fernanda Rodrigues</td>
-          <td>50</td>
+        <tr v-for="item in list">
+          <td>{{ item._id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.titlesActuated }}</td>
           <td>
-            <router-link :to="{ name: 'back.directors.edit' }">
+            <router-link :to="{ name: 'back.directors.edit', params: { id: item._id } }">
               <i data-feather="edit-3"></i>
             </router-link>
           </td>
@@ -44,7 +44,35 @@
 </template>
 
 <script>
+  import { getAll } from '@/services/Director'
   export default {
-    name: 'DirectorIndex'
+    name: 'DirectorIndex',
+    data () {
+      return {
+        items: []
+      }
+    },
+    computed: {
+      list () {
+        return this.items
+      }
+    },
+    methods: {
+      getItems () {
+        getAll()
+          .then((data) => {
+            this.items = data
+          })
+          .then(() => {
+            this.$icons.replace()
+          })
+          .catch(() => {
+            console.error('getAll failed!')
+          })
+      }
+    },
+    mounted () {
+      this.getItems()
+    }
   }
 </script>

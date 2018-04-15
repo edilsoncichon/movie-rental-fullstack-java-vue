@@ -21,4 +21,9 @@ public class AplActors extends AplBase {
         this.delete(actor);
     }
     
+    public void update(int id, String name) throws Exception {
+        Actor actor = (Actor) this.get(id);
+        actor.setName(name);
+        this.update(actor);
+    }
 }

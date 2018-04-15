@@ -67,7 +67,7 @@
             this.$icons.replace()
           })
           .catch(() => {
-            console.error('getActors failed!')
+            console.error('getUnique failed!')
           })
       }
     },

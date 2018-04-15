@@ -34,11 +34,11 @@ public class Response {
      * /TODO Refatorar, para desacoplar da camada de domínio (levar lógica para o controller).
      */
     public void renderItem(Domain domain) throws IOException {
-        response.getWriter().print(createItem(domain));
+        print(createItem(domain));
     }
     
     public void renderList(List list) throws IOException {
-        response.getWriter().print(createList(list));
+        print(createList(list));
     }
      
     public String createMessage(String message) {
@@ -62,8 +62,12 @@ public class Response {
         return objJSON.toString();
     }
     
+    private void print(String value) throws IOException {
+        response.getWriter().print(value);
+    }
+    
     private void printMessage (String message) throws IOException {
-        response.getWriter().print(createMessage(message));
+        print(createMessage(message));
     }
     
     private void setStatus (int code) {

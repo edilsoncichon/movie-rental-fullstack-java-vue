@@ -131,7 +131,7 @@ const router = new Router({
       component: DirectorCreate
     },
     {
-      path: getPathApp('directors/edit'),
+      path: getPathApp('directors/:id/edit'),
       name: getPrefixNameBack('directors.edit'),
       component: DirectorEdit
     },
