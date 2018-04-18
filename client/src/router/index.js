@@ -146,7 +146,7 @@ const router = new Router({
       component: ClasseCreate
     },
     {
-      path: getPathApp('classes/edit'),
+      path: getPathApp('classes/:id/edit'),
       name: getPrefixNameBack('classes.edit'),
       component: ClasseEdit
     },
@@ -161,7 +161,7 @@ const router = new Router({
       component: TitleCreate
     },
     {
-      path: getPathApp('titles/edit'),
+      path: getPathApp('titles/:id/edit'),
       name: getPrefixNameBack('titles.edit'),
       component: TitleEdit
     },

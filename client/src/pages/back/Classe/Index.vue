@@ -5,7 +5,7 @@
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
           <router-link :to="{name: 'back.classes.create'}" class="btn btn-sm btn-outline-secondary">
-            Nova <i data-feather="plus-circle"></i>
+            Novo <i data-feather="plus-circle"></i>
           </router-link>
           <button class="btn btn-sm btn-outline-secondary">Imprimir</button>
           <button class="btn btn-sm btn-outline-secondary">Exportar</button>
@@ -22,19 +22,19 @@
         <tr>
           <th>#</th>
           <th>Nome</th>
-          <th>Valor</th>
-          <th class="text-center">Tempo Máximo Locação</th>
+          <th class="text-center">Valor</th>
+          <th class="text-center">Locação Máxima (dias)</th>
           <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>9000</td>
-          <td>Lançamento</td>
-          <td>R$ 2,99</td>
-          <td class="text-center">5 dias</td>
+        <tr v-for="item in list">
+          <td>{{ item._id }}</td>
+          <td>{{ item.name }}</td>
+          <td class="text-center">R$ {{ item.value }}</td>
+          <td class="text-center">{{ item.maximumRentalTime }}</td>
           <td>
-            <router-link :to="{ name: 'back.classes.edit' }">
+            <router-link :to="{ name: 'back.classes.edit', params: { id: item._id } }">
               <i data-feather="edit-3"></i>
             </router-link>
           </td>
@@ -46,7 +46,35 @@
 </template>
 
 <script>
+  import { getAll } from '@/apis/Classe'
   export default {
-    name: 'ClassesIndex'
+    name: 'ClasseIndex',
+    data () {
+      return {
+        items: []
+      }
+    },
+    computed: {
+      list () {
+        return this.items
+      }
+    },
+    methods: {
+      getItems () {
+        getAll()
+          .then((data) => {
+            this.items = data
+          })
+          .then(() => {
+            this.$icons.replace()
+          })
+          .catch(() => {
+            console.error('getAll failed!')
+          })
+      }
+    },
+    mounted () {
+      this.getItems()
+    }
   }
 </script>
