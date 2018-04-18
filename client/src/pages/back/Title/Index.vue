@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div data-component="title-index">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
       <h1 class="h2">Títulos</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
@@ -23,7 +23,6 @@
           <th>#</th>
           <th>Nome</th>
           <th>Ano</th>
-          <th>Sinópse</th>
           <th>Categoria</th>
           <th>Classe</th>
           <th>Diretor</th>
@@ -32,17 +31,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>7564</td>
-          <td>Poeira em alto mar</td>
-          <td>1910</td>
-          <td>Uma história duvidosa, onde ninguém sabe se...</td>
-          <td>Suspense</td>
-          <td>Lançamento</td>
-          <td>Diretor X</td>
-          <td>Ator 1, Ator 2 e Ator sobrenome3</td>
+        <tr v-for="item in list">
+          <td>{{ item._id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.year }}</td>
+          <td>{{ item.category.name }}</td>
+          <td>{{ item.classe.name }}</td>
+          <td>{{ item.director.name }}</td>
+          <td>{{ item.actors.length }}</td>
           <td>
-            <router-link :to="{ name: 'back.titles.edit' }">
+            <router-link :to="{ name: 'back.titles.edit', params: {id: item._id} }">
               <i data-feather="edit-3"></i>
             </router-link>
           </td>
@@ -54,7 +52,36 @@
 </template>
 
 <script>
+  import { getAll } from '@/apis/Title'
+
   export default {
-    name: 'TitlesIndex'
+    name: 'TitlesIndex',
+    data () {
+      return {
+        items: []
+      }
+    },
+    computed: {
+      list () {
+        return this.items
+      }
+    },
+    methods: {
+      getItems () {
+        getAll()
+          .then((data) => {
+            this.items = data
+          })
+          .then(() => {
+            this.$icons.replace()
+          })
+          .catch(() => {
+            console.error('getAll failed!')
+          })
+      }
+    },
+    mounted () {
+      this.getItems()
+    }
   }
 </script>
