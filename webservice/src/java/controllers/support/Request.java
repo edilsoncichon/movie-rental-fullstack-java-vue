@@ -1,7 +1,6 @@
 package controllers.support;
 
 import javax.json.Json;
-import java.io.IOException;
 import java.io.StringReader;
 import javax.json.JsonObject;
 import java.util.stream.Collectors;
@@ -22,8 +21,10 @@ public class Request {
      * @return
      * @throws IOException 
      */
-    public JsonObject getContent() throws IOException {
+    public JsonObject getContent() throws Exception {
         String data = servletRequest.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        if (data.equals(""))
+            throw new Exception("Request Content is empty.");
         JsonObject dataJson = Json.createReader(new StringReader(data)).readObject();
         return dataJson;
     }
