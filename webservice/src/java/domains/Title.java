@@ -2,6 +2,8 @@ package domains;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Cascade;
@@ -15,20 +17,22 @@ public class Title extends Domain implements Serializable {
     
     private String name;
     
+    private String sinopse;
+    
     @Column(nullable = true)
     private int year;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = true)
     @Cascade(CascadeType.SAVE_UPDATE)
     private TitleCategory category;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "classe_id")
     @Cascade(CascadeType.SAVE_UPDATE)
     private Classe classe;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "director_id")
     @Cascade(CascadeType.SAVE_UPDATE)
     private Director director;
@@ -42,9 +46,10 @@ public class Title extends Domain implements Serializable {
 
     public Title() {}
 
-    public Title(int id, String name, int year, TitleCategory category, Classe classe, Director director, Collection<Actor> actors) {
+    public Title(int id, String name, String sinopse, int year, TitleCategory category, Classe classe, Director director, Collection<Actor> actors) {
         this.id = id;
         this.name = name;
+        this.sinopse = sinopse;
         this.year = year;
         this.category = category;
         this.classe = classe;
@@ -52,9 +57,10 @@ public class Title extends Domain implements Serializable {
         this.actors = actors;
     }
     
-    public Title(String name, int year, TitleCategory category, Classe classe, 
+    public Title(String name, String sinopse, int year, TitleCategory category, Classe classe, 
             Director director, Collection actors) {
         this.name = name;
+        this.sinopse = sinopse;
         this.year = year;
         this.category = category;
         this.classe = classe;
@@ -76,6 +82,14 @@ public class Title extends Domain implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSinopse() {
+        return sinopse;
+    }
+
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
     }
 
     public int getYear() {
@@ -110,7 +124,7 @@ public class Title extends Domain implements Serializable {
         this.director = director;
     }
 
-    public Collection getActors() {
+    public Collection<Actor> getActors() {
         return actors;
     }
 
@@ -120,7 +134,19 @@ public class Title extends Domain implements Serializable {
 
     @Override
     public JsonObjectBuilder toJsonObject() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JsonArrayBuilder actorsBuilder = Json.createArrayBuilder();
+        getActors().forEach(actor -> {
+            actorsBuilder.add(actor.toJsonObject());
+        });
+        return Json.createObjectBuilder()
+                .add("_id", getId())
+                .add("name", getName())
+                .add("sinopse", getSinopse())
+                .add("year", getYear())
+                .add("category", getCategory().toJsonObject())
+                .add("director", getDirector().toJsonObject())
+                .add("classe", getClasse().toJsonObject())
+                .add("actors", actorsBuilder);
     }
     
 }

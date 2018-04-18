@@ -2,6 +2,7 @@ package domains;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import javax.json.Json;
 import javax.json.JsonObjectBuilder;
 
 @Entity
@@ -42,7 +43,9 @@ public class TitleCategory extends Domain implements Serializable {
 
     @Override
     public JsonObjectBuilder toJsonObject() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Json.createObjectBuilder()
+                .add("_id", getId())
+                .add("name", getName());
     }
     
 }
