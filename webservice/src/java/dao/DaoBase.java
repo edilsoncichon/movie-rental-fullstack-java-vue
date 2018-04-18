@@ -60,8 +60,9 @@ public abstract class DaoBase {
         List list;
         session = openSession();
         session.beginTransaction();
-        Criteria cons = session.createCriteria(this.domain);
-        list = cons.list();
+        Criteria criteria = session.createCriteria(this.domain);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        list = criteria.list();
         session.getTransaction().commit();
         session.close();
         return list;
