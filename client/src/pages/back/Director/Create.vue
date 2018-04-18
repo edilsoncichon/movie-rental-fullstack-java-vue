@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import { create } from '@/services/Director'
+  import { create } from '@/apis/Director'
   import Alert from '@/components/Alert'
 
   export default {

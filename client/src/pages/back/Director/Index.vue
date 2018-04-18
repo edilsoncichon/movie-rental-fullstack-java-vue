@@ -44,7 +44,7 @@
 </template>
 
 <script>
-  import { getAll } from '@/services/Director'
+  import { getAll } from '@/apis/Director'
   export default {
     name: 'DirectorIndex',
     data () {

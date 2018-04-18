@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import { create as createActor } from '@/services/Actor'
+  import { create as createActor } from '@/apis/Actor'
   import Alert from '@/components/Alert'
 
   export default {

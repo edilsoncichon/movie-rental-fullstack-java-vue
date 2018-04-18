@@ -84,7 +84,7 @@
 </template>
 
 <script>
-  import { get as getCep } from '../../../services/ViaCep'
+  import { get as getCep } from '../../../apis/ViaCep'
   import InputDate from '@/components/Form/InputDate'
   export default {
     name: 'CustomerCreate',

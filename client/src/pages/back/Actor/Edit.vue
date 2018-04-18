@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import { get, remove, update } from '@/services/Actor'
+  import { get, remove, update } from '@/apis/Actor'
   import Alert from '@/components/Alert'
 
   export default {

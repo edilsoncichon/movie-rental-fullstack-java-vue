@@ -44,7 +44,7 @@
 </template>
 
 <script>
-  import { getAll as getActors } from '@/services/Actor'
+  import { getAll as getActors } from '@/apis/Actor'
   export default {
     name: 'ActorsIndex',
     data () {
