@@ -14,18 +14,18 @@ public class Classe extends Domain implements Serializable {
     @Column(nullable = true)
     private double value;
     @Column(nullable = true)
-    private double maximumRentalTime;
+    private int maximumRentalTime;
 
     public Classe() {}
 
-    public Classe(int id, String name, double value, double maximumRentalTime) {
+    public Classe(int id, String name, double value, int maximumRentalTime) {
         this.id = id;
         this.name = name;
         this.value = value;
         this.maximumRentalTime = maximumRentalTime;
     }
     
-    public Classe(String name, double value, double maximumRentalTime) {
+    public Classe(String name, double value, int maximumRentalTime) {
         this.name = name;
         this.value = value;
         this.maximumRentalTime = maximumRentalTime;
@@ -59,7 +59,7 @@ public class Classe extends Domain implements Serializable {
         return maximumRentalTime;
     }
 
-    public void setMaximumRentalTime(double maximumRentalTime) {
+    public void setMaximumRentalTime(int maximumRentalTime) {
         this.maximumRentalTime = maximumRentalTime;
     }
 

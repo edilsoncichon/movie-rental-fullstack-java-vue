@@ -12,8 +12,8 @@ public class AplClasses extends AplBase {
 
     public void save(JsonObject data) throws Exception {
         String name = data.getString("name");
-        double value = Double.valueOf(data.getString("value"));
-        double maximumRentalTime = Double.valueOf(data.getString("maximumRentalTime"));
+        double value = data.getJsonNumber("value").doubleValue();
+        int maximumRentalTime = data.getInt("maximumRentalTime");
         if (name.equals(""))
             throw new Exception("[name] not filled.");
         Classe classe = new Classe(name, value, maximumRentalTime);
@@ -27,8 +27,8 @@ public class AplClasses extends AplBase {
     
     public void update(int id, JsonObject data) throws Exception {
         String name = data.getString("name");
-        double value = Double.valueOf(data.getString("value"));
-        double maximumRentalTime = Double.valueOf(data.getString("maximumRentalTime"));
+        double value = data.getJsonNumber("value").doubleValue();
+        int maximumRentalTime = data.getInt("maximumRentalTime");
         if (name.equals(""))
             throw new Exception("[name] not filled.");
         Classe classe = (Classe) this.get(id);
