@@ -47,10 +47,10 @@ Contributor(s):
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.show_sql">true</property>
-    <mapping class="domains.Actor"/>
-    <mapping class="domains.Title"/>
-    <mapping class="domains.Classe"/>
-    <mapping class="domains.Director"/>
-    <mapping class="domains.TitleCategory"/>
+    <mapping class="domains.actor.Actor"/>
+    <mapping class="domains.title.Title"/>
+    <mapping class="domains.title.TitleCategory"/>
+    <mapping class="domains.classe.Classe"/>
+    <mapping class="domains.director.Director"/>
   </session-factory>
 </hibernate-configuration>

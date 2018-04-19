@@ -1,29 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <servlet>
-        <servlet-name>Actors</servlet-name>
-        <servlet-class>controllers.ActorsController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Customers</servlet-name>
-        <servlet-class>controllers.CustomersController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Directors</servlet-name>
-        <servlet-class>controllers.DirectorsController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Actors</servlet-name>
-        <url-pattern>/actors</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Customers</servlet-name>
-        <url-pattern>/customers</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Directors</servlet-name>
-        <url-pattern>/directors</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -34,7 +10,7 @@
     </welcome-file-list>
     <filter>
         <filter-name>FilterCORS</filter-name>
-        <filter-class>controllers.filters.FilterCORS</filter-class>
+        <filter-class>http.filters.FilterCORS</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>FilterCORS</filter-name>
@@ -42,7 +18,7 @@
     </filter-mapping>
     <filter>
         <filter-name>FilterContentType</filter-name>
-        <filter-class>controllers.filters.FilterContentType</filter-class>
+        <filter-class>http.filters.FilterContentType</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>FilterContentType</filter-name>
