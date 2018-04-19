@@ -5,16 +5,15 @@ import domains.actor.Actor;
 import domains.classe.Classe;
 import domains.director.Director;
 import javax.json.Json;
-import java.io.Serializable;
 import java.util.Collection;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import javax.persistence.*;
 
 @Entity
-public class Title extends Domain implements Serializable {
+public class Title extends Domain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

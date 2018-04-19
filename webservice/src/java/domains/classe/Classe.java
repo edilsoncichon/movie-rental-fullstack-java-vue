@@ -3,11 +3,10 @@ package domains.classe;
 import domains.Domain;
 import javax.json.Json;
 import javax.persistence.*;
-import java.io.Serializable;
 import javax.json.JsonObjectBuilder;
 
 @Entity
-public class Classe extends Domain implements Serializable {
+public class Classe extends Domain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

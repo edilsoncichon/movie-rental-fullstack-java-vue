@@ -2,13 +2,12 @@ package domains.title;
 
 import domains.Domain;
 import javax.persistence.*;
-import java.io.Serializable;
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
 
 @Entity
 @Table(name = "title_category")
-public class TitleCategory extends Domain implements Serializable {
+public class TitleCategory extends Domain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

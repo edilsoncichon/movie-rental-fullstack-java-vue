@@ -2,7 +2,6 @@ package domains.director;
 
 import domains.Domain;
 import javax.json.Json;
-import java.io.Serializable;
 import javax.json.JsonObjectBuilder;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Director extends Domain implements Serializable {
+public class Director extends Domain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

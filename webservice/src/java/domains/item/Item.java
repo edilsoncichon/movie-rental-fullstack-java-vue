@@ -1,21 +1,53 @@
 package domains.item;
 
+import domains.Domain;
 import domains.title.Title;
 import java.util.Date;
+import javax.persistence.*;
+import javax.json.JsonObjectBuilder;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
-public class Item {
+@Entity
+public class Item extends Domain {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String numberSerie;
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = true)
     private Date aquisitionDate;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "title_id")
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Title title;
-    private ItemType type;
+    private String type;
 
-    public Item(String numberSerie, Date aquisitionDate, Title title, ItemType type) {
+    public Item() {}
+
+    public Item(String numberSerie, Date aquisitionDate, Title title, String type) {
         this.numberSerie = numberSerie;
         this.aquisitionDate = aquisitionDate;
         this.title = title;
         this.type = type;
     }
 
+    public Item(int id, String numberSerie, Date aquisitionDate, Title title, String type) {
+        this.id = id;
+        this.numberSerie = numberSerie;
+        this.aquisitionDate = aquisitionDate;
+        this.title = title;
+        this.type = type;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNumberSerie() {
         return numberSerie;
     }
@@ -40,12 +72,17 @@ public class Item {
         this.title = title;
     }
 
-    public ItemType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(ItemType type) {
+    public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public JsonObjectBuilder toJsonObject() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

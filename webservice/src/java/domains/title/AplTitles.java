@@ -34,7 +34,8 @@ public class AplTitles extends AplBase {
         int categoryId = data.getInt("category_id");
         int classeId = data.getInt("classe_id");
         int directorId = data.getInt("director_id");
-        
+        if (name.equals(""))
+            throw new Exception("[name] not filled.");
         TitleCategory tCategory = (TitleCategory) daoCategories.get(categoryId);
         Classe classe = (Classe) daoClasses.get(classeId);
         Director director = (Director) daoDirectors.get(directorId);
@@ -44,8 +45,6 @@ public class AplTitles extends AplBase {
             int id = ((JsonNumber) idActor).intValue();
             actors.add((Actor) daoActors.get(id));
         });
-        if (name.equals(""))
-            throw new Exception("[name] not filled.");
         Title title = new Title(name, sinopse, year, tCategory, classe, director, actors);
         super.save(title);
     }
