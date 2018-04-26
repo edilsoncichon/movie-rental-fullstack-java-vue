@@ -1,30 +1,29 @@
 package domains.customer;
 
-import domains.user.User;
-import domains.address.Address;
-import java.util.Collection;
+import domains.Domain;
 import java.util.Date;
 
-public abstract class Customer {
+public abstract class Customer extends Domain {
     private int id;
     private String name;
-    private String cpf;
-    private Date birthDate;
-    private Address address;
     private String sex;
-    private User user;
-    private Collection locations;
-
-    public Customer(String name, String cpf, Date birthDate, Address address, String sex, User user, Collection locations) {
+    private Date birthDate;
+    
+    public Customer() {}
+    
+    public Customer(String name, Date birthDate, String sex) {
         this.name = name;
-        this.cpf = cpf;
         this.birthDate = birthDate;
-        this.address = address;
         this.sex = sex;
-        this.user = user;
-        this.locations = locations;
     }
 
+    public Customer(int id, String name, String sex, Date birthDate) {
+        this.id = id;
+        this.name = name;
+        this.sex = sex;
+        this.birthDate = birthDate;
+    }
+    
     public int getId() {
         return id;
     }
@@ -41,14 +40,6 @@ public abstract class Customer {
         this.name = name;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public Date getBirthDate() {
         return birthDate;
     }
@@ -57,36 +48,12 @@ public abstract class Customer {
         this.birthDate = birthDate;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public String getSex() {
         return sex;
     }
 
     public void setSex(String sex) {
         this.sex = sex;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Collection getLocations() {
-        return locations;
-    }
-
-    public void setLocations(Collection locations) {
-        this.locations = locations;
     }
     
 }
