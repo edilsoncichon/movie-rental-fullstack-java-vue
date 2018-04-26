@@ -3,6 +3,7 @@ package domains.item;
 import domains.Domain;
 import domains.title.Title;
 import java.util.Date;
+import javax.json.Json;
 import javax.persistence.*;
 import javax.json.JsonObjectBuilder;
 import org.hibernate.annotations.Cascade;
@@ -82,7 +83,12 @@ public class Item extends Domain {
 
     @Override
     public JsonObjectBuilder toJsonObject() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Json.createObjectBuilder()
+                .add("_id", getId())
+                .add("numberSerie", getNumberSerie())
+                .add("aquisitionDate", getAquisitionDate().toString())
+                .add("title", getTitle().toJsonObject())
+                .add("type", getType());
     }
     
 }

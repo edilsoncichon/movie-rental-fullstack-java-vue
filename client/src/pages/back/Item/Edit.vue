@@ -3,18 +3,19 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
       <h1 class="h2">Item <small class="operation">Alterar</small></h1>
       <div class="btn-toolbar mb-2 mb-md-0">
-        <button @click="editOperation = !editOperation" class="btn btn-sm btn-outline-secondary mr-2">
+        <button @click="updateAllowed = !updateAllowed" class="btn btn-sm btn-outline-secondary mr-2">
           <span data-feather="edit-3"></span>
           Editar
         </button>
-        <button @click="handleDestroy" class="btn btn-sm btn-outline-secondary">
+        <button @click="handleRemove" class="btn btn-sm btn-outline-secondary">
           <i data-feather="trash-2"></i>
           Excluir
         </button>
       </div>
     </div>
     <div>
-      <form>
+      <alert :type="messageType" :message="message" v-if="hasMessage"/>
+      <form v-on:submit.prevent="handleUpdate">
         <div class="form-row">
           <div class="form-group col-md-9">
             <label for="numberSerie">Nº Série</label>
@@ -52,9 +53,63 @@
 </template>
 
 <script>
+  import { remove, update } from '@/apis/Item'
+  import Alert from '@/components/Alert'
   import InputDate from '@/components/Form/InputDate'
+
   export default {
     name: 'ItemEdit',
-    components: { InputDate }
+    components: { InputDate, Alert },
+    data () {
+      return {
+        item: {
+          serieNumber: '',
+          aquisitionDate: new Date(),
+          title: {_id: null},
+          type: ''
+        },
+        collections: {
+          titles: []
+        },
+        message: '',
+        messageType: '',
+        updateAllowed: true
+      }
+    },
+    methods: {
+      handleRemove () {
+        let confirmation = confirm('Tem certeza que deseja deletar?')
+        if (!confirmation) return
+        remove(this.$route.params.id)
+          .then(() => {
+            this.handleSuccess('Deletado com sucesso!')
+          })
+          .catch(error => {
+            this.handleError(error)
+          })
+      },
+      handleUpdate () {
+        update(this.$route.params.id, this.item)
+          .then(() => {
+            this.handleSuccess('Editado com sucesso!')
+          })
+          .catch(error => {
+            this.handleError(error)
+          })
+      },
+      handleSuccess (message) {
+        this.message = message
+        this.messageType = 'success'
+      },
+      handleError (error) {
+        this.message = 'Ocorreu um erro ao processar a operação: ' + error.response.data.message
+        this.messageType = 'error'
+      }
+    },
+    computed: {
+      hasMessage () {
+        return !!this.message
+      }
+    }
   }
 </script>

@@ -176,7 +176,7 @@ const router = new Router({
       component: ItemCreate
     },
     {
-      path: getPathApp('items/edit'),
+      path: getPathApp('items/:id/edit'),
       name: getPrefixNameBack('items.edit'),
       component: ItemEdit
     }

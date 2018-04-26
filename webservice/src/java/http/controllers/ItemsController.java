@@ -28,19 +28,19 @@ public class ItemsController extends Controller {
     public void processPost() throws Exception {
         JsonObject data = getRequest().getContent();
         apl.save(data);
-        getResponse().renderOk("Title registered with success!");
+        getResponse().renderOk("Item registered with success!");
     }
     
     public void processPut() throws Exception {
         String id = getServletRequest().getParameter("id");
         JsonObject data = getRequest().getContent();
         apl.update(Integer.valueOf(id), data);
-        getResponse().renderOk("Title edited with success!");
+        getResponse().renderOk("Item edited with success!");
     }
 
     public void processDelete() throws Exception {
         int id = Integer.valueOf(getServletRequest().getParameter("id"));
         apl.delete(id);
-        getResponse().renderOk("Title deleted with success!");
+        getResponse().renderOk("Item deleted with success!");
     }
 }

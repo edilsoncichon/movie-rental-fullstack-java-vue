@@ -29,16 +29,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>77</td>
-          <td>786545AAABBBCCC</td>
-          <td>Homem das Cavernas</td>
-          <td>25/Fev/2016</td>
+        <tr v-for="item in list">
+          <td>{{ item._id }}</td>
+          <td>{{ item.numberSerie }}</td>
+          <td>{{ item.title.name }}</td>
+          <td>{{ item.aquisitionDate.replace(/(\d{4})-(\d\d)-(\d\d)/g, '$3/$2/$1') }}</td>
+          <td>{{ item.type.toUpperCase() }}</td>
           <td>
-            BlueRay
-          </td>
-          <td>
-            <router-link :to="{ name: 'back.items.edit' }">
+            <router-link :to="{ name: 'back.items.edit', params: {id: item._id} }">
               <i data-feather="edit-3"></i>
             </router-link>
           </td>
@@ -50,7 +48,36 @@
 </template>
 
 <script>
+  import { getAll } from '@/apis/Item'
+
   export default {
-    name: 'ItemsIndex'
+    name: 'ItemsIndex',
+    data () {
+      return {
+        items: []
+      }
+    },
+    computed: {
+      list () {
+        return this.items
+      }
+    },
+    methods: {
+      getItems () {
+        getAll()
+          .then((data) => {
+            this.items = data
+          })
+          .then(() => {
+            this.$icons.replace()
+          })
+          .catch(() => {
+            console.error('getAll failed!')
+          })
+      }
+    },
+    mounted () {
+      this.getItems()
+    }
   }
 </script>
