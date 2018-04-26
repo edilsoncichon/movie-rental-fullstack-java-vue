@@ -20,7 +20,7 @@
     name: 'InputDate',
     props: [
       'id',
-      'defaultDate',
+      'default',
       'disabled'
     ],
     computed: {
@@ -42,35 +42,35 @@
       },
       day: {
         get: function () {
-          return this.defaultDate
-            ? this.defaultDate.getDate()
+          return this.default
+            ? this.default.getDate()
             : ''
         },
         set: function (value) {
-          this.defaultDate.setDate(value)
+          this.default.setDate(value)
         }
       },
       month: {
         get: function () {
-          return this.defaultDate
-            ? this.defaultDate.getMonth() + 1
+          return this.default
+            ? this.default.getMonth() + 1
             : ''
         },
         set: function (value) {
-          return this.defaultDate
-            ? this.defaultDate.setMonth(value - 1)
+          return this.default
+            ? this.default.setMonth(value - 1)
             : ''
         }
       },
       year: {
         get: function () {
-          return this.defaultDate
-            ? this.defaultDate.getFullYear()
+          return this.default
+            ? this.default.getFullYear()
             : ''
         },
         set: function (value) {
-          return this.defaultDate
-            ? this.defaultDate.setFullYear(value)
+          return this.default
+            ? this.default.setFullYear(value)
             : ''
         }
       }

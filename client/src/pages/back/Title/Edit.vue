@@ -81,6 +81,7 @@
 
   export default {
     name: 'TitleEdit',
+    components: { Alert },
     data () {
       return {
         ids: [49, 51],
@@ -104,7 +105,6 @@
         updateAllowed: true
       }
     },
-    components: { Alert },
     methods: {
       handleRemove () {
         let confirmation = confirm('Tem certeza que deseja deletar?')

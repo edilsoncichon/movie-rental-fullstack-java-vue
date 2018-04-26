@@ -5,18 +5,18 @@ services:
   # This environment can be used to run npm and node
   # commands as well
   dev:
-    image: ambientum/node:9
-    container_name: sandbox-vue-dev
+    image: ambientum/node:8
+    container_name: locadora-dev
     command: npm run dev
     volumes:
       - .:/var/www/app
     ports:
-      - 8080:8080
+      - 8081:8080
 
   # Testing dist on a "real" webserver
-  production-server:
+  production:
     image: nginx:stable-alpine
-    container_name: sandbox-preview-server
+    container_name: locadora-preview
     volumes:
       - ./dist:/usr/share/nginx/html
     ports:

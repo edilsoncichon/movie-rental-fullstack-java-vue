@@ -31,7 +31,7 @@
           </div>
           <div class="form-group col-md-4">
             <label for="birth_date">Dt. Nascimento</label>
-            <input-date id="birth_date" />
+            <input-date id="birth_date" :defaultDate="item.birthDate"/>
           </div>
         </div>
         <div class="form-row">
@@ -114,6 +114,9 @@
     },
     data () {
       return {
+        item: {
+          birthDate: new Date('10-10-1992')
+        },
         cep: '',
         street: '',
         number: '',

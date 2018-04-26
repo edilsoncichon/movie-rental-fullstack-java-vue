@@ -7,11 +7,11 @@ import java.text.SimpleDateFormat;
 
 public abstract class DateUtils {
     
-    public static Calendar String2Calendar(String date) {
+    public static Calendar String2Calendar(String date, String pattern) {
         try {
-            Calendar calendar = null;
-            Date dateDate = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-            calendar = Calendar.getInstance();
+            pattern = (pattern == null || pattern.equals("") ) ? "dd/MM/yyyy" : pattern;
+            Calendar calendar = Calendar.getInstance();
+            Date dateDate = new SimpleDateFormat(pattern).parse(date);
             calendar.setTime(dateDate);
             //calendar.getTime().toString()
             return calendar;
