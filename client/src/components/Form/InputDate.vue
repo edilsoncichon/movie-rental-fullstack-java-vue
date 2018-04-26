@@ -40,20 +40,39 @@
         return [ 'jan', 'fev', 'mar', 'abr', 'mai', 'jun',
           'jul', 'ago', 'set', 'out', 'nov', 'dez']
       },
-      day: function () {
-        return this.defaultDate
-          ? this.defaultDate.getDate()
-          : ''
+      day: {
+        get: function () {
+          return this.defaultDate
+            ? this.defaultDate.getDate()
+            : ''
+        },
+        set: function (value) {
+          this.defaultDate.setDate(value)
+        }
       },
-      month: function () {
-        return this.defaultDate
-          ? this.defaultDate.getMonth()
-          : ''
+      month: {
+        get: function () {
+          return this.defaultDate
+            ? this.defaultDate.getMonth() + 1
+            : ''
+        },
+        set: function (value) {
+          return this.defaultDate
+            ? this.defaultDate.setMonth(value - 1)
+            : ''
+        }
       },
-      year: function () {
-        return this.defaultDate
-          ? this.defaultDate.getFullYear()
-          : ''
+      year: {
+        get: function () {
+          return this.defaultDate
+            ? this.defaultDate.getFullYear()
+            : ''
+        },
+        set: function (value) {
+          return this.defaultDate
+            ? this.defaultDate.setFullYear(value)
+            : ''
+        }
       }
     }
   }
