@@ -33,7 +33,7 @@
           <td>{{ item._id }}</td>
           <td>{{ item.numberSerie }}</td>
           <td>{{ item.title.name }}</td>
-          <td>{{ item.aquisitionDate.replace(/(\d{4})-(\d\d)-(\d\d)/g, '$3/$2/$1') }}</td>
+          <td>{{ dateBrMask(item.aquisitionDate) }}</td>
           <td>{{ item.type.toUpperCase() }}</td>
           <td>
             <router-link :to="{ name: 'back.items.edit', params: {id: item._id} }">
@@ -49,6 +49,7 @@
 
 <script>
   import { getAll } from '@/apis/Item'
+  import { dateBrMask } from '@/services/mask'
 
   export default {
     name: 'ItemsIndex',
@@ -74,7 +75,8 @@
           .catch(() => {
             console.error('getAll failed!')
           })
-      }
+      },
+      dateBrMask
     },
     mounted () {
       this.getItems()

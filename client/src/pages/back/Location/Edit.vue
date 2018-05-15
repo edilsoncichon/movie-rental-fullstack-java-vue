@@ -7,7 +7,7 @@
           <span data-feather="edit-3"></span>
           Editar
         </button>
-        <router-link :to="{ name: 'back.returns.create' }" class="btn btn-sm btn-outline-secondary mr-2">
+        <router-link :to="{ name: 'back.locations.return' }" class="btn btn-sm btn-outline-secondary mr-2">
           <span data-feather="check-circle"></span>
           Devolver
         </router-link>

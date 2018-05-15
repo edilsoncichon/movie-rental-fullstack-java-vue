@@ -53,5 +53,8 @@ Contributor(s):
     <mapping class="domains.title.TitleCategory"/>
     <mapping class="domains.title.Title"/>
     <mapping class="domains.item.Item"/>
+    <mapping class="domains.customer.Customer"/>
+    <mapping class="domains.customer.CustomerPartner"/>
+    <mapping class="domains.location.Location"/>
   </session-factory>
 </hibernate-configuration>

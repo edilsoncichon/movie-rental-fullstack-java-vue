@@ -7,8 +7,7 @@ import Dashboard from '@/pages/back/Dashboard'
 import Locations from '@/pages/back/Location/Index'
 import LocationCreate from '@/pages/back/Location/Create'
 import LocationEdit from '@/pages/back/Location/Edit'
-import Returns from '@/pages/back/Return/Index'
-import ReturnCreate from '@/pages/back/Return/Create'
+import ReturnCreate from '@/pages/back/Location/Return'
 import Titles from '@/pages/back/Title/Index'
 import TitleCreate from '@/pages/back/Title/Create'
 import TitleEdit from '@/pages/back/Title/Edit'
@@ -70,18 +69,13 @@ const router = new Router({
       component: LocationCreate
     },
     {
-      path: getPathApp('locations/edit'),
+      path: getPathApp('locations/:id/edit'),
       name: getPrefixNameBack('locations.edit'),
       component: LocationEdit
     },
     {
-      path: getPathApp('returns'),
-      name: getPrefixNameBack('returns'),
-      component: Returns
-    },
-    {
-      path: getPathApp('returns/create'),
-      name: getPrefixNameBack('returns.create'),
+      path: getPathApp('locations/:id/return'),
+      name: getPrefixNameBack('locations.return'),
       component: ReturnCreate
     },
     {
@@ -95,7 +89,7 @@ const router = new Router({
       component: CustomerCreate
     },
     {
-      path: getPathApp('customers/edit'),
+      path: getPathApp('customers/:id/edit'),
       name: getPrefixNameBack('customers.edit'),
       component: CustomerEdit
     },

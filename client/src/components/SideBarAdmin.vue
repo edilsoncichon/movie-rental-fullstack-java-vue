@@ -22,12 +22,6 @@
         </router-link>
       </li>
       <li class="nav-item">
-        <router-link :to="{name: 'back.returns'}" class="nav-link">
-          <span data-feather="check-circle"></span>
-          Devoluções
-        </router-link>
-      </li>
-      <li class="nav-item">
         <router-link :to="{name: 'back.customers'}" class="nav-link">
           <span data-feather="users"></span>
           Clientes

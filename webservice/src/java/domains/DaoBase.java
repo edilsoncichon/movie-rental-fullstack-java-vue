@@ -36,7 +36,7 @@ public abstract class DaoBase {
         } catch (ConstraintViolationException ce) {
             session.getTransaction().rollback();
             session.close();
-            throw new SQLException("Algum campo único já pertence a outro cadastro!");
+            throw new SQLException("Restrição de integridade.");
         } catch (HibernateException he) {
             session.getTransaction().rollback();
             session.close();

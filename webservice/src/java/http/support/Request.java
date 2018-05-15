@@ -17,9 +17,8 @@ public class Request {
      * Captura o conteúdo (body) da requisição em texto puro, e converte para 
      * um JsonObject manipulável.
      * 
-     * @param req
      * @return
-     * @throws IOException 
+     * @throws Exception 
      */
     public JsonObject getContent() throws Exception {
         String data = servletRequest.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
@@ -31,5 +30,15 @@ public class Request {
 
     public HttpServletRequest getServletRequest() {
         return servletRequest;
+    }
+    
+    /**
+     * Get parameter {name} in the request.
+     * 
+     * @param name
+     * @return 
+     */
+    public String get(String name) {
+        return getServletRequest().getParameter(name);
     }
 }

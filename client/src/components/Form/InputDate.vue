@@ -57,9 +57,7 @@
             : ''
         },
         set: function (value) {
-          return this.default
-            ? this.default.setMonth(value - 1)
-            : ''
+          this.default.setMonth(value - 1)
         }
       },
       year: {
@@ -69,9 +67,7 @@
             : ''
         },
         set: function (value) {
-          return this.default
-            ? this.default.setFullYear(value)
-            : ''
+          this.default.setFullYear(value)
         }
       }
     }

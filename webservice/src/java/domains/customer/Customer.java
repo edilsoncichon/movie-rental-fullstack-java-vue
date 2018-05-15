@@ -2,11 +2,21 @@ package domains.customer;
 
 import domains.Domain;
 import java.util.Date;
+import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Customer extends Domain {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     private String name;
+    
     private String sex;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = true)
     private Date birthDate;
     
     public Customer() {}

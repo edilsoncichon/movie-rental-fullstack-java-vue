@@ -14,14 +14,18 @@ public class Item extends Domain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     private String numberSerie;
+    
     @Temporal(TemporalType.DATE)
     @Column(nullable = true)
     private Date aquisitionDate;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "title_id")
     @Cascade(CascadeType.SAVE_UPDATE)
     private Title title;
+    
     private String type;
 
     public Item() {}
