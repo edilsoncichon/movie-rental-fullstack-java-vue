@@ -1,12 +1,14 @@
 <script>
   import { get as getCep } from '@/apis/ViaCep'
   import InputDate from '@/components/Form/InputDate'
-  import Alert from '../../../components/Alert'
-  import { create } from '../../../apis/Customer'
+  import Alert from '@/components/Alert'
+  import { create } from '@/apis/CustomerPartner'
 
   export default {
     name: 'CustomerCreate',
+
     components: { Alert, InputDate },
+
     methods: {
       searchCep () {
         if (this.item.address.cep.length < 8) {
@@ -47,11 +49,13 @@
         this.messageType = 'error'
       }
     },
+
     computed: {
       hasMessage () {
         return !!this.message
       }
     },
+
     data () {
       return {
         item: {

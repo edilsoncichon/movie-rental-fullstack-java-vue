@@ -1,3 +1,63 @@
+<script>
+  import { getAll } from '@/apis/CustomerPartner'
+  import Alert from '@/components/Alert'
+  import { dateBrMask } from '@/services/mask'
+
+  export default {
+    name: 'CustomersIndex',
+
+    computed: {
+      list () {
+        return this.items
+      },
+      hasMessage () {
+        return !!this.message.value
+      }
+    },
+
+    methods: {
+      getItems () {
+        getAll()
+          .then((data) => {
+            this.items = data
+            this.$icons.replace()
+          })
+          .then(() => {
+            this.$icons.replace()
+          })
+          .catch(() => {
+            this.handleError('Não foi possível carregar os registros! =/')
+          })
+      },
+      handleSuccess (message) {
+        this.message.value = message
+        this.message.type = 'success'
+      },
+      handleError (error) {
+        this.message.value = 'Ocorreu um erro ao processar a operação: ' + error.response.data.message
+        this.message.type = 'error'
+      },
+      dateBrMask
+    },
+
+    mounted () {
+      this.getItems()
+    },
+
+    components: { Alert },
+
+    data () {
+      return {
+        items: [],
+        message: {
+          value: '',
+          type: ''
+        }
+      }
+    }
+  }
+</script>
+
 <template>
   <div data-component="customer-index">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -16,7 +76,7 @@
         </button>
       </div>
     </div>
-    <alert :type="messageType" :message="message" v-if="hasMessage"/>
+    <alert :type="message.type" :message="message.value" v-if="hasMessage"/>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
         <thead>
@@ -49,56 +109,3 @@
     </div>
   </div>
 </template>
-
-<script>
-  import { getAll } from '@/apis/Customer'
-  import Alert from '@/components/Alert'
-  import { dateBrMask } from '@/services/mask'
-
-  export default {
-    name: 'CustomersIndex',
-    data () {
-      return {
-        items: [],
-        message: '',
-        messageType: ''
-      }
-    },
-    computed: {
-      list () {
-        return this.items
-      },
-      hasMessage () {
-        return !!this.message
-      }
-    },
-    methods: {
-      getItems () {
-        getAll()
-          .then((data) => {
-            this.items = data
-            this.$icons.replace()
-          })
-          .then(() => {
-            this.$icons.replace()
-          })
-          .catch(() => {
-            this.handleError('Não foi possível carregar os registros! =/')
-          })
-      },
-      handleSuccess (message) {
-        this.message = message
-        this.messageType = 'success'
-      },
-      handleError (error) {
-        this.message = 'Ocorreu um erro ao processar a operação: ' + error.response.data.message
-        this.messageType = 'error'
-      },
-      dateBrMask
-    },
-    mounted () {
-      this.getItems()
-    },
-    components: { Alert }
-  }
-</script>

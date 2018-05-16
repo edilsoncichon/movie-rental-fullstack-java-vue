@@ -56,5 +56,6 @@ Contributor(s):
     <mapping class="domains.customer.Customer"/>
     <mapping class="domains.customer.CustomerPartner"/>
     <mapping class="domains.location.Location"/>
+    <mapping class="domains.customer.CustomerDependent"/>
   </session-factory>
 </hibernate-configuration>

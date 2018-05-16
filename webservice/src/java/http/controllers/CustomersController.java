@@ -1,17 +1,17 @@
 package http.controllers;
 
 import domains.Domain;
-import domains.customer.AplCustomers;
+import domains.customer.AplCustomersPartners;
 import java.util.List;
 import javax.json.JsonObject;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "Customers", urlPatterns = {"/customers"})
 public class CustomersController extends Controller {
-    private AplCustomers apl;
+    private AplCustomersPartners apl;
 
     public CustomersController() {
-        apl = new AplCustomers();
+        apl = new AplCustomersPartners();
     }
 
     public void processGet() throws Exception {

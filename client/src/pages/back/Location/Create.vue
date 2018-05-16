@@ -47,7 +47,7 @@
 
 <script>
   import { getAll as getItems } from '@/apis/Item'
-  import { getAll as getCustomers } from '@/apis/Customer'
+  import { getAll as getCustomers } from '@/apis/CustomerPartner'
   import { create } from '@/apis/Location'
   import Alert from '@/components/Alert'
   import InputDate from '@/components/Form/InputDate'

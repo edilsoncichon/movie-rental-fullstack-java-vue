@@ -1,5 +1,5 @@
 <template>
-  <div data-component="app">
+  <div data-component="layout-app">
     <nav-bar/>
     <div class="container-fluid">
       <div class="row">
@@ -20,6 +20,7 @@
 import SideBarAdmin from '@/components/SideBarAdmin'
 import SideBarCustomer from '@/components/SideBarCustomer'
 import NavBar from '@/components/NavBar'
+
 export default {
   name: 'App',
   components: {
