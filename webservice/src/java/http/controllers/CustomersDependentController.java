@@ -44,13 +44,6 @@ public class CustomersDependentController extends Controller {
         getResponse().renderOk("Customer registered with success!");
     }
     
-    public void processPut() throws Exception {
-        String id = getRequest().get("id");
-        JsonObject data = getRequest().getContent();
-        apl.update(Integer.valueOf(id), data);
-        getResponse().renderOk("Customer edited with success!");
-    }
-
     public void processDelete() throws Exception {
         int id = Integer.valueOf(getRequest().get("id"));
         apl.delete(id);

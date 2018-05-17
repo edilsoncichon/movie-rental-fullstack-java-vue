@@ -86,7 +86,7 @@
         let condition = !this.modalDependents.show
         let vm = this
         this.modalDependents.displayBlock = condition
-        setTimeout(function () {
+        setTimeout(function () { // efeito de fade-in/fade-out
           vm.modalDependents.show = condition
         }, 100)
       }
@@ -127,8 +127,8 @@
             country: '',
             uf: ''
           },
-          email: '',
-          password: '',
+          email: 'edilson@cichon.com',
+          password: '123456',
           dependents: []
         },
         newDependent: {
@@ -170,7 +170,7 @@
 <template>
   <div data-component="customer-edit">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-      <h1 class="h2">Cliente <small class="operation">Alterar</small></h1>
+      <h1 class="h2">Cliente <small class="operation">alterar</small></h1>
       <div class="btn-toolbar mb-2 mb-md-0">
         <button @click="openModalDependents" class="btn btn-sm btn-outline-secondary mr-2">
           <span data-feather="plus-circle"></span>
@@ -192,7 +192,7 @@
     </div>
     <div>
       <alert :type="messages.default.type" :message="messages.default.value" v-if="hasMessage"/>
-      <form v-on:submit.prevent="handleUpdate">
+      <form @submit.prevent="handleUpdate">
         <div class="form-row">
           <div class="form-group col-md-9">
             <label for="name">Nome</label>
@@ -259,13 +259,12 @@
             <input v-model="item.password" type="password" class="form-control" id="password" placeholder="Senha">
           </div>
         </div>
+        <div class="text-right mt-5 mb-5">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
       </form>
-      <div class="text-right mt-5 mb-5">
-        <button type="submit" class="btn btn-primary">Salvar</button>
-      </div>
     </div>
-
-    <div v-bind:class="modalDependents.show ? 'show' : ''" class="modal fade" tabindex="-1" role="dialog" v-bind:style="modalDependents.displayBlock ? 'display: block;' : 'display: none;'" style="padding-right: 15px;">
+    <div :class="modalDependents.show ? 'show' : ''" class="modal fade" tabindex="-1" role="dialog" :style="modalDependents.displayBlock ? 'display: block;' : 'display: none;'" style="padding-right: 15px;">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">

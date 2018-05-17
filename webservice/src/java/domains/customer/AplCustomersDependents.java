@@ -36,19 +36,6 @@ public class AplCustomersDependents extends AplBase {
         this.delete(item);
     }
     
-    public void update(int id, JsonObject data) throws Exception {
-//        String name = data.getString("name");
-//        double value = data.getJsonNumber("value").doubleValue();
-//        int maximumRentalTime = data.getInt("maximumRentalTime");
-//        if (name.equals(""))
-//            throw new Exception("[name] not filled.");
-//        Title title = (Title) this.get(id);
-//        title.setName(name);
-//        title.setValue(value);
-//        title.setMaximumRentalTime(maximumRentalTime);
-//        this.update(title);
-    }
-    
     private DaoCustomersDependents getDao() {
         return ((DaoCustomersDependents) this.dao);
     }

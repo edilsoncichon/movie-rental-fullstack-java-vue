@@ -30,15 +30,20 @@ public class AplCustomersPartners extends AplBase {
     }
     
     public void update(int id, JsonObject data) throws Exception {
-//        String name = data.getString("name");
-//        double value = data.getJsonNumber("value").doubleValue();
-//        int maximumRentalTime = data.getInt("maximumRentalTime");
-//        if (name.equals(""))
-//            throw new Exception("[name] not filled.");
-//        Title title = (Title) this.get(id);
-//        title.setName(name);
-//        title.setValue(value);
-//        title.setMaximumRentalTime(maximumRentalTime);
-//        this.update(title);
+        String name = data.getString("name");
+        String sex = data.getString("sex");
+        String cpf = data.getString("cpf");
+        Calendar birthDate = DateUtils.String2Calendar(data.getString("birthDate"), "yyyy-MM-dd");
+        String address = data.getJsonObject("address").toString();
+       
+        if (name.equals(""))
+            throw new Exception("[name] not filled.");
+        CustomerPartner item = (CustomerPartner) this.get(id);
+        item.setName(name);
+        item.setSex(sex);
+        item.setCpf(cpf);
+        item.setBirthDate(birthDate.getTime());
+        item.setAddress(address);
+        super.update(item);
     }
 }
