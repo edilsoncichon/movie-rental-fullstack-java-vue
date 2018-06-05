@@ -1,6 +1,6 @@
 import http from './_HttpConfig'
 
-let resource = 'customers-dependents'
+let resource = 'admin/customers-dependents'
 
 export const getAll = () => http.get(resource).then(response => response.data.data)
 export const getAllByPartnerId = (id) =>

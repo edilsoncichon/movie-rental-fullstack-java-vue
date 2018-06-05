@@ -15,12 +15,14 @@ public class AplCustomersPartners extends AplBase {
         String name = data.getString("name");
         String sex = data.getString("sex");
         String cpf = data.getString("cpf");
+        String email = ""; //data.getString("email");
+        String password = ""; // data.getString("password");
         Calendar birthDate = DateUtils.String2Calendar(data.getString("birthDate"), "yyyy-MM-dd");
         String address = data.getJsonObject("address").toString();
        
         if (name.equals(""))
             throw new Exception("[name] not filled.");
-        CustomerPartner item = new CustomerPartner(name, cpf, birthDate.getTime(), address, sex);
+        CustomerPartner item = new CustomerPartner(name, cpf, birthDate.getTime(), address, sex, email, password);
         super.save(item);
     }
     
@@ -33,17 +35,22 @@ public class AplCustomersPartners extends AplBase {
         String name = data.getString("name");
         String sex = data.getString("sex");
         String cpf = data.getString("cpf");
+        String email = ""; //data.getString("email");
+        String password = ""; // data.getString("password");
         Calendar birthDate = DateUtils.String2Calendar(data.getString("birthDate"), "yyyy-MM-dd");
         String address = data.getJsonObject("address").toString();
        
         if (name.equals(""))
             throw new Exception("[name] not filled.");
-        CustomerPartner item = (CustomerPartner) this.get(id);
-        item.setName(name);
-        item.setSex(sex);
-        item.setCpf(cpf);
-        item.setBirthDate(birthDate.getTime());
-        item.setAddress(address);
-        super.update(item);
+        CustomerPartner customer = (CustomerPartner) this.get(id);
+        customer.setName(name);
+        customer.setSex(sex);
+        customer.setCpf(cpf);
+        customer.setBirthDate(birthDate.getTime());
+        customer.setAddress(address);
+        customer.setEmail(email);
+        customer.setPassword(password);
+        super.update(customer);
     }
+    
 }

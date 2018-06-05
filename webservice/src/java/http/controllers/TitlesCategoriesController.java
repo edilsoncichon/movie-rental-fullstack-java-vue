@@ -5,7 +5,7 @@ import domains.title.AplTitlesCategories;
 import javax.servlet.annotation.WebServlet;
 import java.util.List;
 
-@WebServlet(name = "TitlesCategories", urlPatterns = "/titles_categories")
+@WebServlet(name = "TitlesCategories", urlPatterns = "/admin/titles_categories")
 public class TitlesCategoriesController extends Controller {
     private AplTitlesCategories apl;
 

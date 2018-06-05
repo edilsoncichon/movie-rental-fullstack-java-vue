@@ -5,7 +5,6 @@ import domains.customer.CustomerPartner;
 import domains.customer.DaoCustomersPartner;
 import domains.item.DaoItems;
 import domains.item.Item;
-import java.util.Calendar;
 import java.util.Date;
 import javax.json.JsonObject;
 import support.DateUtils;
@@ -27,17 +26,20 @@ public class AplLocations extends AplBase {
      * @throws Exception 
      */
     public void save(JsonObject data) throws Exception {
-        String expectedDateDevolution = data.getString("expectedDateDevolution");
-        Calendar dtCalendar = DateUtils.String2Calendar(expectedDateDevolution, "yyyy-MM-dd");
-        double valueItem = data.getJsonNumber("valueItem").doubleValue();
+        String expectedDateDevolutionStr = data.getString("expectedDateDevolution");
+        Date expectedDateDevolution = DateUtils.String2Calendar(expectedDateDevolutionStr, "yyyy-MM-dd").getTime();
+        double valueItem = Double.valueOf(data.getString("valueItem"));
         
         int itemId = data.getInt("item_id");
         int customerId = data.getInt("customer_id");
         Item item = (Item) daoItems.get(itemId);
         CustomerPartner customer = (CustomerPartner) daoCustomers.get(customerId);
+        
+        if (daoItems.isLocated(item))
+            throw new Exception("Item is leased, lease can not be registered!");
         if (valueItem == 0)
             throw new Exception("[value] not filled.");
-        Location location = new Location(customer, item, new Date(), dtCalendar.getTime(), null, 0, valueItem, 0);
+        Location location = new Location(customer, item, new Date(), expectedDateDevolution, null, 0, valueItem, 0);
         super.save(location);
     }
     
@@ -47,16 +49,25 @@ public class AplLocations extends AplBase {
     }
     
     public void update(int id, JsonObject data) throws Exception {
-//        String name = data.getString("name");
-//        double value = data.getJsonNumber("value").doubleValue();
-//        int maximumRentalTime = data.getInt("maximumRentalTime");
-//        if (name.equals(""))
-//            throw new Exception("[name] not filled.");
-//        Title title = (Title) this.get(id);
-//        title.setName(name);
-//        title.setValue(value);
-//        title.setMaximumRentalTime(maximumRentalTime);
-//        this.update(title);
+        String expectedReturnDateStr = data.getString("expectedReturnDate");
+        Date expectedReturnDate = DateUtils.String2Calendar(expectedReturnDateStr, "yyyy-MM-dd").getTime();
+        double valueItem = Double.valueOf(data.getString("valueItem"));
+        
+        int itemId = data.getInt("item");
+        int customerId = data.getInt("customerId");
+        Item item = (Item) daoItems.get(itemId);
+        CustomerPartner customer = (CustomerPartner) daoCustomers.get(customerId);
+        if (valueItem == 0)
+            throw new Exception("[value] not filled.");
+        Location location = (Location) this.get(id);
+        if (location.getReturnDate() != null) {
+            throw new Exception("Location already returned, update not allowed!");
+        }
+        location.setItem(item);
+        location.setCustomer(customer);
+        location.setExpectedReturnDate(expectedReturnDate);
+        location.setValueItem(valueItem);
+        super.update(location);
     }
     
     /**
@@ -69,7 +80,7 @@ public class AplLocations extends AplBase {
     public void makeReturn(int id, JsonObject data) throws Exception {
         String returnDateText = data.getString("returnDate");
         Date returnDate = DateUtils.String2Calendar(returnDateText, "yyyy-mm-dd").getTime();        
-        double fine = data.getInt("fine");
+        double fine = Integer.valueOf(data.getString("fine"));
         double amount = Double.valueOf(data.getString("amount"));
         if (returnDateText.equals(""))
             throw new Exception("[returnDate] not filled.");

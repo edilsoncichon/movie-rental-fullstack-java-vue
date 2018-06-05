@@ -76,6 +76,14 @@ public abstract class DaoBase {
         return list.get(0);
     }
     
+    public Object getByColumn(String column, String value) {
+        Criteria crit = openSession().createCriteria(this.domain);
+        crit.add(Restrictions.eq(column, value));
+        List list = crit.list();
+        session.close();
+        return list.get(0);
+    }
+    
     public List search(String filter) {
         //TODO Implementar a busca por um termo...
         return null;

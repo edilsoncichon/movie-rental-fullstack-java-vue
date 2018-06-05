@@ -6,7 +6,7 @@ import java.util.List;
 import javax.json.JsonObject;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name = "CustomersDependents", urlPatterns = {"/customers-dependents"})
+@WebServlet(name = "CustomersDependents", urlPatterns = {"/admin/customers-dependents"})
 public class CustomersDependentController extends Controller {
     private AplCustomersDependents apl;
 

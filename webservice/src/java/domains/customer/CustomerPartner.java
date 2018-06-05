@@ -29,20 +29,29 @@ public class CustomerPartner extends Customer {
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @Cascade(CascadeType.SAVE_UPDATE)
     private Collection<CustomerDependent> dependents;
+    
+    @Column(unique = true)
+    private String email;
+    
+    private String password;
 
     public CustomerPartner() {}
     
-    public CustomerPartner(String name, String cpf, Date birthDate, String address, String sex) {
+    public CustomerPartner(String name, String cpf, Date birthDate, String address, String sex, String email, String password) {
         super(name, birthDate, sex);
         this.cpf = cpf;
         this.address = address;
+        this.email = email;
+        this.password = password;
         //this.dependents = dependents;
     }
 
-    public CustomerPartner(int id, String name, Date birthDate, String cpf, String address, String sex) {
+    public CustomerPartner(int id, String name, Date birthDate, String cpf, String address, String sex, String email, String password) {
         super(id, name, sex, birthDate);
         this.cpf = cpf;
         this.address = address;
+        this.email = email;
+        this.password = password;
     }
     
     public Collection getDependents() {
@@ -75,6 +84,22 @@ public class CustomerPartner extends Customer {
 
     public void setLocations(Collection locations) {
         this.locations = locations;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

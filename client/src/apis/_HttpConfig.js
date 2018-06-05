@@ -8,4 +8,16 @@ const client = axios.create({
   }
 })
 
+const handleResponseSuccess = function (response) {
+  return response
+}
+const handleResponseError = function (err) {
+  if (err.response && err.response.status === 403) {
+    window.location.replace('/login')
+  }
+  return Promise.reject(err)
+}
+
+client.interceptors.response.use(handleResponseSuccess, handleResponseError)
+
 export default client

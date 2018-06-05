@@ -6,7 +6,7 @@ import java.util.List;
 import javax.json.JsonObject;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name = "Items", urlPatterns = "/items")
+@WebServlet(name = "Items", urlPatterns = "/admin/items")
 public class ItemsController extends Controller {
     private AplItems apl;
 

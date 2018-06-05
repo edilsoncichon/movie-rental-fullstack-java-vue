@@ -1,6 +1,6 @@
 import http from './_HttpConfig'
 
-let resource = 'items'
+let resource = 'admin/items'
 
 export const getAll = () => http.get(resource).then(response => response.data.data)
 export const get = (id) => http.get(`${resource}?id=${id}`).then(response => response.data.data)
