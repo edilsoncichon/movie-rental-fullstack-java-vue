@@ -1,17 +1,13 @@
 <script>
-  import InputDate from '@/components/Form/InputDate'
   import { get, remove, update } from '@/apis/CustomerPartner'
   import {
     create as createDependent,
     remove as removeDependent,
     getAllByPartnerId as getByPartnerId
   } from '@/apis/CustomerDependent'
-  import Alert from '@/components/Alert'
 
   export default {
     name: 'CustomerEdit',
-
-    components: { InputDate, Alert },
 
     methods: {
       handleRemove () {
@@ -264,7 +260,8 @@
         </div>
       </form>
     </div>
-    <div :class="modalDependents.show ? 'show' : ''" class="modal fade" tabindex="-1" role="dialog" :style="modalDependents.displayBlock ? 'display: block;' : 'display: none;'" style="padding-right: 15px;">
+
+    <div :class="modalDependents.show ? 'show' : ''" class="modal fade" tabindex="-1" role="dialog" :style="modalDependents.displayBlock ? 'display: block;' : 'display: none;'">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -279,7 +276,7 @@
               <div class="card-body">
                 <form v-on:submit.prevent="handleNewDependent">
                   <div class="form-row">
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-3">
                       <label for="dependent_name">Nome</label>
                       <input type="text" v-model="newDependent.name" id="dependent_name" class="form-control" placeholder="Nome"/>
                     </div>
@@ -291,7 +288,7 @@
                         <option value="F">Feminino</option>
                       </select>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-5">
                       <label for="dependent_birth_dt">Dt. Nascimento</label>
                       <input-date :default="newDependent.birthDate" id="dependent_birth_dt"/>
                     </div>
@@ -335,3 +332,10 @@
     </div>
   </div>
 </template>
+
+<style>
+  .modal {
+    padding-right: 15px;
+    background-color: rgba(0,0,0,0.4);
+  }
+</style>

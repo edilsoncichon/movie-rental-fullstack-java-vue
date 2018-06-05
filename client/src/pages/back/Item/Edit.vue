@@ -54,12 +54,9 @@
 
 <script>
   import { remove, update } from '@/apis/Item'
-  import Alert from '@/components/Alert'
-  import InputDate from '@/components/Form/InputDate'
 
   export default {
     name: 'ItemEdit',
-    components: { InputDate, Alert },
     data () {
       return {
         item: {

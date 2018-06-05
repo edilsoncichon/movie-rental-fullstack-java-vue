@@ -1,3 +1,76 @@
+<script>
+  import { getAll as getItems } from '@/apis/Item'
+  import { getAll as getCustomers } from '@/apis/CustomerPartner'
+  import { create } from '@/apis/Location'
+
+  export default {
+    name: 'LocationCreate',
+    data () {
+      return {
+        item: {
+          item_id: '',
+          customer_id: '',
+          expectedDateDevolution: new Date(),
+          valueItem: ''
+        },
+        collections: {
+          items: [],
+          customers: []
+        },
+        message: '',
+        messageType: 'success'
+      }
+    },
+    methods: {
+      handleCreate () {
+        create(this.item)
+          .then(() => {
+            this.handleSuccess('Cadastrado com sucesso!')
+          })
+          .catch(error => {
+            this.handleError(error)
+          })
+      },
+      handleSuccess (message) {
+        this.message = message
+        this.messageType = 'success'
+      },
+      handleError (error) {
+        this.message = error.response.data.message
+        this.messageType = 'error'
+      },
+      getItemSelected (id) {
+        return this.collections.items.find(function (item) {
+          return item._id === id
+        })
+      },
+      calculate () {
+        let item = this.getItemSelected(this.item.item_id)
+        if (item) {
+          this.item.valueItem = String(item.title.classe.value)
+        } else {
+          this.item.valueItem = ''
+        }
+      }
+    },
+    computed: {
+      hasMessage () {
+        return !!this.message
+      }
+    },
+    mounted () {
+      getCustomers()
+        .then(data => {
+          this.collections.customers = data
+        })
+      getItems()
+        .then(data => {
+          this.collections.items = data
+        })
+    }
+  }
+</script>
+
 <template>
   <div>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -44,80 +117,3 @@
     </div>
   </div>
 </template>
-
-<script>
-  import { getAll as getItems } from '@/apis/Item'
-  import { getAll as getCustomers } from '@/apis/CustomerPartner'
-  import { create } from '@/apis/Location'
-  import Alert from '@/components/Alert'
-  import InputDate from '@/components/Form/InputDate'
-
-  export default {
-    name: 'LocationCreate',
-    components: { InputDate, Alert },
-    data () {
-      return {
-        item: {
-          item_id: '',
-          customer_id: '',
-          expectedDateDevolution: new Date(),
-          valueItem: ''
-        },
-        collections: {
-          items: [],
-          customers: []
-        },
-        message: '',
-        messageType: 'success'
-      }
-    },
-    methods: {
-      handleCreate () {
-        create(this.item)
-          .then(() => {
-            this.handleSuccess('Cadastrado com sucesso!')
-          })
-          .catch(error => {
-            this.handleError(error)
-          })
-      },
-      handleSuccess (message) {
-        this.message = message
-        this.messageType = 'success'
-      },
-      handleError (error) {
-        this.message = error.response.data.message
-        this.messageType = 'error'
-      },
-      getItemSelected (id) {
-        return this.collections.items.find(function (item) {
-          return item._id === id
-        })
-      },
-      calculate () {
-        let item = this.getItemSelected(this.item.item_id)
-        if (item) {
-          this.item.valueItem = item.title.classe.value
-          // this.item.expectedDateDevolution = new Date()
-        } else {
-          this.item.valueItem = ''
-        }
-      }
-    },
-    computed: {
-      hasMessage () {
-        return !!this.message
-      }
-    },
-    mounted () {
-      getCustomers()
-        .then(data => {
-          this.collections.customers = data
-        })
-      getItems()
-        .then(data => {
-          this.collections.items = data
-        })
-    }
-  }
-</script>

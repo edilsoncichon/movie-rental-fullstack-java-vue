@@ -1,10 +1,10 @@
 <script>
   import { getAll } from '@/apis/Location'
-  import Alert from '@/components/Alert'
   import { dateBrMask } from '@/services/mask'
 
   export default {
     name: 'LocationsIndex',
+
     computed: {
       list () {
         return this.items
@@ -13,6 +13,7 @@
         return !!this.message
       }
     },
+
     methods: {
       getItems () {
         getAll()
@@ -40,10 +41,11 @@
         return location.returnDate ? 'Devolvido' : 'Locado'
       }
     },
+
     mounted () {
       this.getItems()
     },
-    components: { Alert },
+
     data () {
       return {
         items: [],
@@ -96,10 +98,10 @@
           <td>{{ dateBrMask(item.locationDate) }}</td>
           <td>{{ dateBrMask(item.expectedReturnDate) }}</td>
           <td>{{ dateBrMask(item.returnDate) }}</td>
-          <td>R$ {{ item.valueItem }}</td>
+          <td>R$ {{ item.amount || item.valueItem }}</td>
           <td>{{ getStatusLocation(item) }}</td>
           <td>
-            <router-link title="Editar" :to="{name: 'back.locations.edit', params: {id: item._id}}">
+            <router-link title="Editar" v-if="getStatusLocation(item) !== 'Devolvido'" :to="{name: 'back.locations.edit', params: {id: item._id}}">
               <i data-feather="edit-3"></i>
             </router-link>
           </td>

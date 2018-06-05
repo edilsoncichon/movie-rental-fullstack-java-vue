@@ -43,12 +43,9 @@
 <script>
   import { getAll as getTitles } from '@/apis/Title'
   import { create } from '@/apis/Item'
-  import InputDate from '@/components/Form/InputDate'
-  import Alert from '@/components/Alert'
 
   export default {
     name: 'ItemCreate',
-    components: { InputDate, Alert },
     data () {
       return {
         item: {

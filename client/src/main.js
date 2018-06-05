@@ -5,6 +5,7 @@ import App from './layouts/App'
 import router from './router'
 import IconsPlugin from './plugins/Icons'
 import EventBusPlugin from './plugins/EventBus'
+import './_global'
 Vue.use(IconsPlugin)
 Vue.use(EventBusPlugin)
 

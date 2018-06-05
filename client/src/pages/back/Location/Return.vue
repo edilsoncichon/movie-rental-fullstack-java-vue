@@ -1,12 +1,14 @@
 <script>
-  import Alert from '@/components/Alert'
   import { get as getLocation, _return } from '@/apis/Location'
 
   export default {
     name: 'LocationReturn',
-    components: { Alert },
+
     methods: {
       handleReturn () {
+        this.location.fine = String(this.location.fine)
+        this.location.amount = String(this.location.amount)
+
         _return(this.location._id, this.location)
           .then(() => {
             this.handleSuccess('Devolução efetuada com sucesso!')
@@ -33,6 +35,7 @@
         }
       }
     },
+
     computed: {
       amount: {
         get: function () {
@@ -47,21 +50,22 @@
         return this.location.item.numberSerie + ' - ' + this.location.item.title.name
       }
     },
+
     data () {
       return {
         location: {
-          _id: 1,
+          _id: null,
           item: {
-            _id: 1,
-            numberSerie: '',
+            _id: null,
+            numberSerie: null,
             title: {
-              name: ''
+              name: null
             }
           },
           customerName: '',
-          valueItem: 0,
-          fine: 0,
-          amount: 0,
+          valueItem: '',
+          fine: null,
+          amount: '',
           locationDate: '2018-05-10',
           expectedReturnDate: '2018-05-02',
           returnDate: '2018-05-15'
@@ -73,6 +77,7 @@
         }
       }
     },
+
     mounted () {
       getLocation(this.$route.params.id)
         .then(data => {
@@ -107,7 +112,7 @@
           </div>
           <div class="form-group col-md-3">
             <label for="returnDate">Dt. Devolução</label>
-            <input class="form-control" type="date" id="returnDate" v-model="location.returnDate"/>
+            <input class="form-control" type="date" id="returnDate" v-model="location.returnDate" required/>
           </div>
           <div class="form-group col-md-3">
             <label for="amount">Multa por Atraso</label>
