@@ -30,6 +30,27 @@ import ItemEdit from '@/pages/back/Item/Edit'
 
 Vue.use(Router)
 
+/**
+ * Utils
+ */
+function getPathApp (path) {
+  return '/' + path
+}
+function getPrefixNameBack (name) {
+  return 'back.' + name
+}
+
+/**
+ * Session Validate
+ */
+const redirectIfNotAuthenticated = (to, from, next) => {
+  if (to.name !== 'login') {
+    let sessionToken = window.localStorage.getItem('X-Session-Token')
+    !sessionToken ? next({ name: 'login' }) : next()
+  }
+  next()
+}
+
 const router = new Router({
   mode: 'history',
   linkExactActiveClass: 'active',
@@ -56,133 +77,149 @@ const router = new Router({
     {
       path: getPathApp('dashboard'),
       name: getPrefixNameBack('dashboard'),
-      component: Dashboard
+      component: Dashboard,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('locations'),
       name: getPrefixNameBack('locations'),
-      component: Locations
+      component: Locations,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('locations/create'),
       name: getPrefixNameBack('locations.create'),
-      component: LocationCreate
+      component: LocationCreate,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('locations/:id/edit'),
       name: getPrefixNameBack('locations.edit'),
-      component: LocationEdit
+      component: LocationEdit,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('locations/:id/return'),
       name: getPrefixNameBack('locations.return'),
-      component: ReturnCreate
+      component: ReturnCreate,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('customers'),
       name: getPrefixNameBack('customers'),
-      component: Customers
+      component: Customers,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('customers/create'),
       name: getPrefixNameBack('customers.create'),
-      component: CustomerCreate
+      component: CustomerCreate,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('customers/:id/edit'),
       name: getPrefixNameBack('customers.edit'),
-      component: CustomerEdit
+      component: CustomerEdit,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('reports'),
       name: getPrefixNameBack('reports'),
-      component: Reports
+      component: Reports,
+      beforeEnter: redirectIfNotAuthenticated
     },
       /* Acerv control */
     {
       path: getPathApp('actors'),
       name: getPrefixNameBack('actors'),
-      component: Actors
+      component: Actors,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('actors/create'),
       name: getPrefixNameBack('actors.create'),
-      component: ActorCreate
+      component: ActorCreate,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('actors/:id/edit'),
       name: getPrefixNameBack('actors.edit'),
-      component: ActorEdit
+      component: ActorEdit,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('directors'),
       name: getPrefixNameBack('directors'),
-      component: Directors
+      component: Directors,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('directors/create'),
       name: getPrefixNameBack('directors.create'),
-      component: DirectorCreate
+      component: DirectorCreate,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('directors/:id/edit'),
       name: getPrefixNameBack('directors.edit'),
-      component: DirectorEdit
+      component: DirectorEdit,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('classes'),
       name: getPrefixNameBack('classes'),
-      component: Classes
+      component: Classes,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('classes/create'),
       name: getPrefixNameBack('classes.create'),
-      component: ClasseCreate
+      component: ClasseCreate,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('classes/:id/edit'),
       name: getPrefixNameBack('classes.edit'),
-      component: ClasseEdit
+      component: ClasseEdit,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('titles'),
       name: getPrefixNameBack('titles'),
-      component: Titles
+      component: Titles,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('titles/create'),
       name: getPrefixNameBack('titles.create'),
-      component: TitleCreate
+      component: TitleCreate,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('titles/:id/edit'),
       name: getPrefixNameBack('titles.edit'),
-      component: TitleEdit
+      component: TitleEdit,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('items'),
       name: getPrefixNameBack('items'),
-      component: Items
+      component: Items,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('items/create'),
       name: getPrefixNameBack('items.create'),
-      component: ItemCreate
+      component: ItemCreate,
+      beforeEnter: redirectIfNotAuthenticated
     },
     {
       path: getPathApp('items/:id/edit'),
       name: getPrefixNameBack('items.edit'),
-      component: ItemEdit
+      component: ItemEdit,
+      beforeEnter: redirectIfNotAuthenticated
     }
   ]
 })
 
 export default router
-
-function getPathApp (path) {
-  return '/' + path
-}
-
-function getPrefixNameBack (name) {
-  return 'back.' + name
-}

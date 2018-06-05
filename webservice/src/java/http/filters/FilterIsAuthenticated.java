@@ -27,15 +27,17 @@ public class FilterIsAuthenticated implements Filter {
         
         System.out.println("IsAuthenticated: " + req.getMethod());
  
-        String sessionToken = req.getHeader("session-token");
+        String sessionToken = req.getHeader("X-Session-Token");
+        
+        System.out.println("===========================");
+        System.out.println("Token received: " + sessionToken);
         
         if ( !aplAuth.validateSessionToken(sessionToken) ) {
+            System.out.println("403 - FORBIDDEN");
             res.setStatus(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
-        
         //Session authorized! Pass the requesition forward...
-        
         chain.doFilter(sReq, sRes);
     }
     

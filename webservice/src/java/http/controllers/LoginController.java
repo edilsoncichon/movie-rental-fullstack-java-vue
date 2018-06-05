@@ -34,7 +34,7 @@ public class LoginController extends Controller {
         try {
             token = apl.validateCredentials(username, password);
         } catch (Exception e) {
-            getResponse().renderError("Credentials invalids.", 403);
+            getResponse().renderError("Credentials invalids.", 401);
             return;
         }
         getResponse().renderOk(token);

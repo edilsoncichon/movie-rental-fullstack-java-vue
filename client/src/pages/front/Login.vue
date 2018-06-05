@@ -1,15 +1,51 @@
+<script>
+  import { validateCredentials } from '@/apis/Auth'
+  import http from '@/apis/_HttpConfig'
+
+  export default {
+    name: 'Login',
+    methods: {
+      handleLogin () {
+        validateCredentials(this.form)
+          .then(res => {
+            let sessionToken = res.message
+
+            window.localStorage.setItem('X-Session-Token', sessionToken)
+
+            http.defaults.headers['X-Session-Token'] = sessionToken
+
+            this.$router.push({ name: 'back.dashboard' })
+          })
+          .catch(err => {
+            this.messageValidate = err.response ? err.response.data.message : 'Não foi possível entrar no sistema!'
+          })
+      }
+    },
+    data () {
+      return {
+        title: 'Entrar',
+        form: {
+          username: '',
+          password: ''
+        },
+        messageValidate: ''
+      }
+    }
+  }
+</script>
+
 <template>
   <div data-component="login">
     <h1>Entrar</h1>
     <div class="container col-xs-2 col-md-6 offset-md-3">
-      <form v-on:submit.prevent="handleLogin">
+      <form @submit.prevent="handleLogin">
         <div class="form-group">
           <label for="username">Usuário</label>
-          <input type="text" name="username" id="username" v-model="username" class="form-control" placeholder="Usuário"/>
+          <input type="text" name="username" id="username" v-model="form.username" class="form-control" placeholder="Usuário"/>
         </div>
         <div class="form-group">
           <label for="password">Senha</label>
-          <input type="password" name="password" id="password" v-model="password" class="form-control" placeholder="Senha"/>
+          <input type="password" name="password" id="password" v-model="form.password" class="form-control" placeholder="Senha"/>
         </div>
         <div class="form-row ml-0">
           <div class="custom-control custom-checkbox">
@@ -23,34 +59,6 @@
     </div>
   </div>
 </template>
-
-<script>
-  import Alert from '@/components/Alert'
-  import AuthService from '@/services/Authentication'
-
-  export default {
-    name: 'Login',
-    methods: {
-      handleLogin: function () {
-        if (AuthService.handleLogin(this.$data)) {
-          this.messageValidate = ''
-          this.$router.push({name: 'back.dashboard'})
-        } else {
-          this.messageValidate = 'Login inválido!'
-        }
-      }
-    },
-    components: { Alert },
-    data () {
-      return {
-        title: 'Entrar',
-        username: '',
-        password: '',
-        messageValidate: ''
-      }
-    }
-  }
-</script>
 
 <style scoped>
   h1, h2 {

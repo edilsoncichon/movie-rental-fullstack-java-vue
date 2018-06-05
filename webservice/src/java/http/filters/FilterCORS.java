@@ -22,7 +22,7 @@ public class FilterCORS implements Filter {
  
         res.addHeader("Access-Control-Allow-Origin", "*");
         res.addHeader("Access-Control-Allow-Methods", "GET, OPTIONS, HEAD, PUT, DELETE, POST");
-        res.addHeader("Access-Control-Allow-Headers", "content-type, cache-control");
+        res.addHeader("Access-Control-Allow-Headers", "Content-Type, Cache-Control, X-Session-Token");
  
         // For HTTP OPTIONS verb/method reply with ACCEPTED status code -- per CORS handshake
         if (req.getMethod().equals("OPTIONS")) {
