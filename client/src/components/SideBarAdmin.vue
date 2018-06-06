@@ -77,8 +77,10 @@
 
 <script>
   import SideBar from '@/components/SideBar'
+
   export default {
     name: 'SideBarAdmin',
+
     components: {
       SideBar
     }

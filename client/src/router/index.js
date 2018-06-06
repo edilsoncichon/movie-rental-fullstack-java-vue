@@ -68,7 +68,7 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/titles/show',
+      path: '/titles/:id/show',
       name: 'front.titles.show',
       component: TitleShow
     },

@@ -21,6 +21,16 @@
           <textarea class="form-control" id="sinopse" placeholder="Sinópse e detalhes..." rows="2" v-model="item.sinopse"></textarea>
         </div>
         <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="category">URL capa</label>
+            <input type="text" v-model="item.urlCapa" id="url_capa" class="form-control" placeholder="Ex: http://site.com/imagem.jpg" required/>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="class">Código do Trailer (Youtube)</label>
+            <input type="text" v-model="item.urlTrailer" id="url_trailer" class="form-control" placeholder="Ex: V4t_r8j5a6g" required/>
+          </div>
+        </div>
+        <div class="form-row">
           <div class="form-group col-md-4">
             <label for="category">Categoria</label>
             <select v-model="item.category_id" id="category" class="form-control">
@@ -76,6 +86,8 @@
           name: '',
           year: 2018,
           sinopse: '',
+          urlCapa: null,
+          urlTrailer: null,
           category_id: null,
           classe_id: null,
           director_id: null,

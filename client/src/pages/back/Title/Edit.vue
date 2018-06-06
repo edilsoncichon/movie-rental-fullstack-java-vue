@@ -13,6 +13,8 @@
         item: {
           name: '',
           year: 2018,
+          urlCapa: null,
+          urlTrailer: null,
           sinopse: '',
           category_id: null,
           classe_id: null,
@@ -159,6 +161,16 @@
                 {{ director.name }}
               </option>
             </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="category">URL capa</label>
+            <input type="text" v-model="item.urlCapa" id="url_capa" class="form-control" :disabled="!updateAllowed" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="class">Código do Trailer (Youtube)</label>
+            <input type="text" v-model="item.urlTrailer" id="url_trailer" class="form-control" :disabled="!updateAllowed" />
           </div>
         </div>
         <div class="form-row">

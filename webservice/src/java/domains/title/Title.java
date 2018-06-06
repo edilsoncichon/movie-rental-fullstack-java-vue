@@ -25,6 +25,10 @@ public class Title extends Domain {
     @Column(nullable = true)
     private int year;
     
+    private String urlCapa;
+    
+    private String urlTrailer;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = true)
     @Cascade(CascadeType.SAVE_UPDATE)
@@ -49,10 +53,12 @@ public class Title extends Domain {
 
     public Title() {}
 
-    public Title(int id, String name, String sinopse, int year, TitleCategory category, Classe classe, Director director, Collection<Actor> actors) {
+    public Title(int id, String name, String sinopse, int year, TitleCategory category, Classe classe, Director director, Collection<Actor> actors, String urlCapa, String urlTrailer) {
         this.id = id;
         this.name = name;
         this.sinopse = sinopse;
+        this.urlCapa = urlCapa;
+        this.urlTrailer = urlTrailer;
         this.year = year;
         this.category = category;
         this.classe = classe;
@@ -61,9 +67,11 @@ public class Title extends Domain {
     }
     
     public Title(String name, String sinopse, int year, TitleCategory category, Classe classe, 
-            Director director, Collection actors) {
+            Director director, Collection actors, String urlCapa, String urlTrailer) {
         this.name = name;
         this.sinopse = sinopse;
+        this.urlCapa = urlCapa;
+        this.urlTrailer = urlTrailer;
         this.year = year;
         this.category = category;
         this.classe = classe;
@@ -101,6 +109,22 @@ public class Title extends Domain {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public String getUrlCapa() {
+        return urlCapa;
+    }
+
+    public void setUrlCapa(String urlCapa) {
+        this.urlCapa = urlCapa;
+    }
+
+    public String getUrlTrailer() {
+        return urlTrailer;
+    }
+
+    public void setUrlTrailer(String urlTrailer) {
+        this.urlTrailer = urlTrailer;
     }
 
     public TitleCategory getCategory() {
@@ -143,9 +167,11 @@ public class Title extends Domain {
         });
         return Json.createObjectBuilder()
                 .add("_id", getId())
-                .add("name", getName())
-                .add("sinopse", getSinopse())
-                .add("year", getYear())
+                .add("name", getName()+"")
+                .add("sinopse", getSinopse()+"")
+                .add("year", getYear()+"")
+                .add("urlCapa", getUrlCapa()+"")
+                .add("urlTrailer", getUrlTrailer()+"")
                 .add("category", getCategory().toJsonObject())
                 .add("director", getDirector().toJsonObject())
                 .add("classe", getClasse().toJsonObject())

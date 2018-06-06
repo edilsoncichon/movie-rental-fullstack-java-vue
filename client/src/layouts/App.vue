@@ -1,3 +1,40 @@
+<script>
+  export default {
+    name: 'App',
+
+    data () {
+      return {
+        isCustomer: false,
+        isAdmin: false
+      }
+    },
+
+    mounted () {
+      this.init()
+    },
+
+    updated () {
+      this.init()
+    },
+
+    methods: {
+      init () {
+        this.$icons.replace()
+        this.identifySidebar()
+      },
+      identifySidebar () {
+        if (this.$route.name.match(/back\./g)) {
+          this.isCustomer = false
+          this.isAdmin = true
+        } else {
+          this.isAdmin = false
+          this.isCustomer = true
+        }
+      }
+    }
+  }
+</script>
+
 <template>
   <div data-component="layout-app">
     <nav-bar/>
@@ -15,48 +52,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import SideBarAdmin from '@/components/SideBarAdmin'
-import SideBarCustomer from '@/components/SideBarCustomer'
-import NavBar from '@/components/NavBar'
-
-export default {
-  name: 'App',
-  components: {
-    SideBarCustomer,
-    SideBarAdmin,
-    NavBar
-  },
-  data () {
-    return {
-      isCustomer: false,
-      isAdmin: false
-    }
-  },
-  mounted () {
-    this.init()
-  },
-  updated () {
-    this.init()
-  },
-  methods: {
-    init () {
-      this.$icons.replace()
-      this.identifySidebar()
-    },
-    identifySidebar () {
-      if (this.$route.name.match(/back\./g)) {
-        this.isCustomer = false
-        this.isAdmin = true
-      } else {
-        this.isAdmin = false
-        this.isCustomer = true
-      }
-    }
-  }
-}
-</script>
 
 <style lang="scss">
   @import "../assets/scss/app";

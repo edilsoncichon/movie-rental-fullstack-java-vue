@@ -31,6 +31,8 @@ public class AplTitles extends AplBase {
         String name = data.getString("name");
         int year = Integer.valueOf(data.getString("year"));
         String sinopse = data.getString("sinopse");
+        String urlCapa = data.getString("urlCapa");
+        String urlTrailer = data.getString("urlTrailer");
         int categoryId = data.getInt("category_id");
         int classeId = data.getInt("classe_id");
         int directorId = data.getInt("director_id");
@@ -45,7 +47,7 @@ public class AplTitles extends AplBase {
             int id = ((JsonNumber) idActor).intValue();
             actors.add((Actor) daoActors.get(id));
         });
-        Title title = new Title(name, sinopse, year, tCategory, classe, director, actors);
+        Title title = new Title(name, sinopse, year, tCategory, classe, director, actors, urlCapa, urlTrailer);
         super.save(title);
     }
     
@@ -58,6 +60,8 @@ public class AplTitles extends AplBase {
         String name = data.getString("name");
         int year = Integer.valueOf(data.getString("year"));
         String sinopse = data.getString("sinopse");
+        String urlCapa = data.getString("urlCapa");
+        String urlTrailer = data.getString("urlTrailer");
         int categoryId = data.getInt("category_id");
         int classeId = data.getInt("classe_id");
         int directorId = data.getInt("director_id");
@@ -77,6 +81,8 @@ public class AplTitles extends AplBase {
         title.setName(name);
         title.setYear(year);
         title.setSinopse(sinopse);
+        title.setUrlCapa(urlCapa);
+        title.setUrlTrailer(urlTrailer);
         title.setCategory(tCategory);
         title.setClasse(classe);
         title.setDirector(director);
