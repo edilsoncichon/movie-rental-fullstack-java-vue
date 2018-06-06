@@ -172,7 +172,7 @@
           <span data-feather="plus-circle"></span>
           Dependente
         </button>
-        <button @click="editOperation = !editOperation" class="btn btn-sm btn-outline-secondary mr-2">
+        <button @click="updateAllowed = !updateAllowed" class="btn btn-sm btn-outline-secondary mr-2">
           <span data-feather="edit-3"></span>
           Editar
         </button>
@@ -260,7 +260,7 @@
         </div>
       </form>
     </div>
-
+    <!--MODAL DEPENDENTS-->
     <div :class="modalDependents.show ? 'show' : ''" class="modal fade" tabindex="-1" role="dialog" :style="modalDependents.displayBlock ? 'display: block;' : 'display: none;'">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">

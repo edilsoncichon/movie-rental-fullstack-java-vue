@@ -66,9 +66,6 @@
           .then(() => {
             this.$icons.replace()
           })
-          .catch(() => {
-            console.error('getUnique failed!')
-          })
       }
     },
     mounted () {

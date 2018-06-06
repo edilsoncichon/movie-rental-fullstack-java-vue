@@ -32,11 +32,10 @@
 
 <script>
   import { get, remove, update } from '@/apis/Director'
-  import Alert from '@/components/Alert'
 
   export default {
     name: 'DirectorEdit',
-    components: { Alert },
+
     data () {
       return {
         item: {
@@ -48,38 +47,41 @@
         updateAllowed: false
       }
     },
+
     mounted () {
       get(this.$route.params.id)
         .then(data => {
           this.item = data
         })
     },
+
     methods: {
       handleRemove () {
         let confirmation = confirm('Tem certeza que deseja deletar?')
         if (!confirmation) return
         remove(this.$route.params.id)
           .then(() => {
-            this.message = 'Deletado com sucesso!'
+            this.handleSuccess('Deletado com sucesso!')
           })
-          .catch((data) => {
-            console.error(data)
-            this.message = data.response.data.error
-            this.messageType = 'error'
-          })
+          .catch(this.handleError)
       },
       handleUpdate () {
         update(this.$route.params.id, this.item)
           .then(() => {
-            this.message = 'Editado com sucesso!'
+            this.handleSuccess('Editado com sucesso!')
           })
-          .catch((data) => {
-            console.error(data)
-            this.message = data.response.data.error
-            this.messageType = 'error'
-          })
+          .catch(this.handleError)
+      },
+      handleSuccess (message) {
+        this.message = message
+        this.messageType = 'success'
+      },
+      handleError (error) {
+        this.message = error.response.data.message
+        this.messageType = 'error'
       }
     },
+
     computed: {
       hasMessage () {
         return !!this.message

@@ -110,7 +110,9 @@ public class CustomerPartner extends Customer {
                 .add("sex", getSex()+"")
                 .add("birthDate", getBirthDate().toString()+"")
                 .add("cpf", getCpf()+"")
-                .add("address", getAddress()+"");
+                .add("address", getAddress()+"")
+                .add("email", getEmail()+"")
+                .add("password", getPassword()+"");
     }
     
 }

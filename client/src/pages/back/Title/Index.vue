@@ -75,9 +75,6 @@
           .then(() => {
             this.$icons.replace()
           })
-          .catch(() => {
-            console.error('getAll failed!')
-          })
       }
     },
     mounted () {

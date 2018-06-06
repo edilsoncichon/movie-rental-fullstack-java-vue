@@ -15,8 +15,8 @@ public class AplCustomersPartners extends AplBase {
         String name = data.getString("name");
         String sex = data.getString("sex");
         String cpf = data.getString("cpf");
-        String email = ""; //data.getString("email");
-        String password = ""; // data.getString("password");
+        String email = data.getString("email");
+        String password = data.getString("password");
         Calendar birthDate = DateUtils.String2Calendar(data.getString("birthDate"), "yyyy-MM-dd");
         String address = data.getJsonObject("address").toString();
        
@@ -35,8 +35,8 @@ public class AplCustomersPartners extends AplBase {
         String name = data.getString("name");
         String sex = data.getString("sex");
         String cpf = data.getString("cpf");
-        String email = ""; //data.getString("email");
-        String password = ""; // data.getString("password");
+        String email = data.getString("email");
+        String password = data.getString("password");
         Calendar birthDate = DateUtils.String2Calendar(data.getString("birthDate"), "yyyy-MM-dd");
         String address = data.getJsonObject("address").toString();
        

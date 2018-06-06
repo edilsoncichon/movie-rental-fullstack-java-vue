@@ -32,11 +32,10 @@
 
 <script>
   import { get, remove, update } from '@/apis/Actor'
-  import Alert from '@/components/Alert'
 
   export default {
     name: 'CustomerEdit',
-    components: {Alert},
+
     data () {
       return {
         actor: {
@@ -48,38 +47,41 @@
         updateAllowed: false
       }
     },
+
     mounted () {
       get(this.$route.params.id)
         .then(data => {
           this.actor = data
         })
     },
+
     methods: {
       handleRemove () {
         let confirmation = confirm('Tem certeza que deseja cancelar esse Ator?')
         if (!confirmation) return
         remove(this.$route.params.id)
           .then(() => {
-            this.message = 'Ator deletado com sucesso!'
+            this.handleSuccess('Ator deletado com sucesso!')
           })
-          .catch((data) => {
-            console.error(data)
-            this.message = data.response.data.error
-            this.messageType = 'error'
-          })
+          .catch(this.handleError)
       },
       handleUpdate () {
         update(this.$route.params.id, this.actor)
           .then(() => {
-            this.message = 'Ator editado com sucesso!'
+            this.handleSuccess('Ator editado com sucesso!')
           })
-          .catch((data) => {
-            console.error(data)
-            this.message = data.response.data.error
-            this.messageType = 'error'
-          })
+          .catch(this.handleError)
+      },
+      handleError (error) {
+        this.message = error.response.data.message
+        this.messageType = 'error'
+      },
+      handleSuccess (message) {
+        this.message = message
+        this.messageType = 'success'
       }
     },
+
     computed: {
       hasMessage () {
         return !!this.message

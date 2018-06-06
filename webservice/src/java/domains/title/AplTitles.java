@@ -55,15 +55,32 @@ public class AplTitles extends AplBase {
     }
     
     public void update(int id, JsonObject data) throws Exception {
-//        String name = data.getString("name");
-//        double value = data.getJsonNumber("value").doubleValue();
-//        int maximumRentalTime = data.getInt("maximumRentalTime");
-//        if (name.equals(""))
-//            throw new Exception("[name] not filled.");
-//        Title title = (Title) this.get(id);
-//        title.setName(name);
-//        title.setValue(value);
-//        title.setMaximumRentalTime(maximumRentalTime);
-//        this.update(title);
+        String name = data.getString("name");
+        int year = Integer.valueOf(data.getString("year"));
+        String sinopse = data.getString("sinopse");
+        int categoryId = data.getInt("category_id");
+        int classeId = data.getInt("classe_id");
+        int directorId = data.getInt("director_id");
+        if (name.equals(""))
+            throw new Exception("[name] not filled.");
+        TitleCategory tCategory = (TitleCategory) daoCategories.get(categoryId);
+        Classe classe = (Classe) daoClasses.get(classeId);
+        Director director = (Director) daoDirectors.get(directorId);
+        Collection<Actor> actors = new ArrayList<>();
+        JsonArray actorsIds = data.getJsonArray("actors");
+        actorsIds.forEach(idActor -> {
+            int idInt = ((JsonNumber) idActor).intValue();
+            actors.add((Actor) daoActors.get(idInt));
+        });
+        
+        Title title = (Title) this.get(id);
+        title.setName(name);
+        title.setYear(year);
+        title.setSinopse(sinopse);
+        title.setCategory(tCategory);
+        title.setClasse(classe);
+        title.setDirector(director);
+        title.setActors(actors);
+        this.update(title);
     }
 }

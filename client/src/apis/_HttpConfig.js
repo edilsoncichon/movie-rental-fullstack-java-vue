@@ -8,21 +8,10 @@ const client = axios.create({
   }
 })
 
+/**
+ * Recupera o token do LocalStorage.
+ */
 let sessionToken = window.localStorage.getItem('X-Session-Token')
-
 client.defaults.headers['X-Session-Token'] = sessionToken
-
-// const handleResponseSuccess = function (response) {
-//   return response
-// }
-// const handleResponseError = function (err) {
-//   let sessionToken = window.localStorage.key('X-Session-Token')
-//   if (err.response && err.response.status === 403 && sessionToken === null) {
-//     window.location.replace('/login')
-//   }
-//   return Promise.reject(err)
-// }
-//
-// client.interceptors.response.use(handleResponseSuccess, handleResponseError)
 
 export default client

@@ -5,6 +5,7 @@
 
   export default {
     name: 'LocationCreate',
+
     data () {
       return {
         item: {
@@ -21,6 +22,7 @@
         messageType: 'success'
       }
     },
+
     methods: {
       handleCreate () {
         create(this.item)
@@ -53,11 +55,13 @@
         }
       }
     },
+
     computed: {
       hasMessage () {
         return !!this.message
       }
     },
+
     mounted () {
       getCustomers()
         .then(data => {

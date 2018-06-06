@@ -1,3 +1,109 @@
+<script>
+  import { get as getTitle, remove, update } from '@/apis/Title'
+  import { getAll as getCategories } from '@/apis/TitleCategory'
+  import { getAll as getDirectors } from '@/apis/Director'
+  import { getAll as getClasses } from '@/apis/Classe'
+  import { getAll as getActors } from '@/apis/Actor'
+
+  export default {
+    name: 'TitleEdit',
+
+    data () {
+      return {
+        item: {
+          name: '',
+          year: 2018,
+          sinopse: '',
+          category_id: null,
+          classe_id: null,
+          director_id: null,
+          actors: []
+        },
+        collections: {
+          categories: [],
+          classes: [],
+          directors: [],
+          actors: []
+        },
+        message: '',
+        messageType: '',
+        updateAllowed: false
+      }
+    },
+
+    methods: {
+      handleRemove () {
+        let confirmation = confirm('Tem certeza que deseja deletar?')
+        if (!confirmation) return
+        remove(this.$route.params.id)
+          .then(() => {
+            this.handleSuccess('Deletado com sucesso!')
+          })
+          .catch(error => {
+            this.handleError(error)
+          })
+      },
+      handleUpdate () {
+        this.item.year = String(this.item.year)
+        update(this.$route.params.id, this.item)
+          .then(() => {
+            this.handleSuccess('Editado com sucesso!')
+          })
+          .catch(error => {
+            this.handleError(error)
+          })
+      },
+      handleSuccess (message) {
+        this.message = message
+        this.messageType = 'success'
+      },
+      handleError (error) {
+        this.message = 'Ocorreu um erro ao processar a operação: ' + error.response.data.message
+        this.messageType = 'error'
+      },
+      extractIdsActors () {
+        this.item.actors =
+          this.item.actors.map(function (item) {
+            return item._id
+          })
+      }
+    },
+
+    computed: {
+      hasMessage () {
+        return !!this.message
+      }
+    },
+
+    mounted () {
+      getCategories()
+        .then(data => {
+          this.collections.categories = data
+        })
+      getActors()
+        .then(data => {
+          this.collections.actors = data
+        })
+      getClasses()
+        .then(data => {
+          this.collections.classes = data
+        })
+      getDirectors()
+        .then(data => {
+          this.collections.directors = data
+        })
+      getTitle(this.$route.params.id)
+        .then(data => {
+          this.item = data
+          this.item.category_id = data.category._id
+          this.item.classe_id = data.classe._id
+          this.item.director_id = data.director._id
+          this.extractIdsActors()
+        })
+    }
+  }
+</script>
+
 <template>
   <div data-component="title-edit">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -33,21 +139,21 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="category">Categoria</label>
-            <select v-model="item.category._id" id="category" class="form-control" :disabled="!updateAllowed">
+            <select v-model="item.category_id" id="category" class="form-control" :disabled="!updateAllowed">
               <option>Selecione...</option>
               <option v-for="category in collections.categories" :value="category._id">{{ category.name }}</option>
             </select>
           </div>
           <div class="form-group col-md-4">
             <label for="class">Classe</label>
-            <select v-model="item.classe._id" id="class" class="form-control" :disabled="!updateAllowed">
+            <select v-model="item.classe_id" id="class" class="form-control" :disabled="!updateAllowed">
               <option>Selecione...</option>
               <option v-for="classe in collections.classes" :value="classe._id">{{ classe.name }}</option>
             </select>
           </div>
           <div class="form-group col-md-4">
             <label for="director">Diretor</label>
-            <select v-model="item.director._id" id="director" class="form-control" :disabled="!updateAllowed">
+            <select v-model="item.director_id" id="director" class="form-control" :disabled="!updateAllowed">
               <option>Selecione...</option>
               <option v-for="director in collections.directors" :value="director._id">
                 {{ director.name }}
@@ -70,104 +176,3 @@
     </div>
   </div>
 </template>
-
-<script>
-  import { get as getItem, remove, update } from '@/apis/Title'
-  import { getAll as getCategories } from '@/apis/TitleCategory'
-  import { getAll as getDirectors } from '@/apis/Director'
-  import { getAll as getClasses } from '@/apis/Classe'
-  import { getAll as getActors } from '@/apis/Actor'
-  import Alert from '@/components/Alert'
-
-  export default {
-    name: 'TitleEdit',
-    components: { Alert },
-    data () {
-      return {
-        ids: [49, 51],
-        item: {
-          name: '',
-          year: 2018,
-          sinopse: '',
-          category: {_id: null},
-          classe: {_id: null},
-          director: {_id: null},
-          actors: []
-        },
-        collections: {
-          categories: [],
-          classes: [],
-          directors: [],
-          actors: []
-        },
-        message: '',
-        messageType: '',
-        updateAllowed: true
-      }
-    },
-    methods: {
-      handleRemove () {
-        let confirmation = confirm('Tem certeza que deseja deletar?')
-        if (!confirmation) return
-        remove(this.$route.params.id)
-          .then(() => {
-            this.handleSuccess('Deletado com sucesso!')
-          })
-          .catch(error => {
-            this.handleError(error)
-          })
-      },
-      handleUpdate () {
-        update(this.$route.params.id, this.item)
-          .then(() => {
-            this.handleSuccess('Editado com sucesso!')
-          })
-          .catch(error => {
-            this.handleError(error)
-          })
-      },
-      handleSuccess (message) {
-        this.message = message
-        this.messageType = 'success'
-      },
-      handleError (error) {
-        this.message = 'Ocorreu um erro ao processar a operação: ' + error.response.data.message
-        this.messageType = 'error'
-      },
-      extractIdsActors () {
-        this.item.actors =
-          this.item.actors.map(function (item) {
-            return item._id
-          })
-      }
-    },
-    computed: {
-      hasMessage () {
-        return !!this.message
-      }
-    },
-    mounted () {
-      getCategories()
-        .then(data => {
-          this.collections.categories = data
-        })
-      getActors()
-        .then(data => {
-          this.collections.actors = data
-        })
-      getClasses()
-        .then(data => {
-          this.collections.classes = data
-        })
-      getDirectors()
-        .then(data => {
-          this.collections.directors = data
-        })
-      getItem(this.$route.params.id)
-        .then(data => {
-          this.item = data
-          this.extractIdsActors()
-        })
-    }
-  }
-</script>
