@@ -17,7 +17,7 @@ You will need to install the following requirements:
 * GlassFish 3 or higher.
 
 Netbeans IDE 8 was used.
-Set up the database connection in the Hibernate configuration file: `webservice / src / java / config / database / hibernate.cfg.xml`.
+Set up the database connection in the Hibernate configuration file: `webservice/src/java/config/database/hibernate.cfg.xml`.
 
 Import the `backup_banco.sql` file to MySQL, this will already create the structure and populate the base with test information.
 
